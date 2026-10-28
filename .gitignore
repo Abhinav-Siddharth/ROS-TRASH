@@ -1,0 +1,28 @@
+# Colcon build artefacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+
+# Pytest / cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ROS logs & bags
+log_mission_*.txt
+*.bag/
+rosbag2_*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*~
