@@ -195,5 +195,72 @@ This log records progress and verification output milestone-by-milestone.
   Python 3.12 fork warnings remain in ament_flake8 output after OpenCV is loaded;
   they do not cause test errors, failures, or skips.
 
+## Milestone M6: Course documentation, clean-clone checks, and hosted CI
+
+- **Local status**: PASSED (2026-10-28). Hosted CI is pending the first push; its
+  actual result will be appended below after the run completes.
+- **Changes**: Rewrote the README with setup/run instructions, a Mermaid architecture,
+  coordinate/state explanations, monitoring, verification, results, and limitations.
+  Added `docs/EXPLAIN.md` with a presentation script and viva questions. CI now runs
+  the unchanged complete verifier on Ubuntu 24.04/Jazzy and uploads evidence. Fixed
+  explicit executor initialization and readiness ordering (DECISION-006).
+- **Clean-clone procedure**: Made a local clone at `/tmp/trash_boat_clean_clone` with
+  `git clone --no-hardlinks`; no build/install artifacts were copied. Applied the
+  pending M6 patch, then checked that every Python source exactly matched the primary
+  checkout. Executed the documented gate from a minimal environment:
+  ```bash
+  env -i PATH=/usr/bin:/bin LANG=C.UTF-8 PYTHONNOUSERSITE=1 \
+    ROS_LOG_DIR=/tmp/trash_boat_clean_roslogs ROS_DOMAIN_ID=77 \
+    ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST bash --noprofile --norc -c \
+    'source /opt/ros/jazzy/setup.bash && ./tools/verify.sh'
+  ```
+- **Real final output excerpts** (complete output: `docs/verification/final_verify.txt`):
+  ```text
+  Summary: 37 tests, 0 errors, 0 failures, 0 skipped
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.9}
+  PASSED: SEED=1 acceptance check passed
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.2}
+  PASSED: SEED=2 acceptance check passed
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.4}
+  PASSED: SEED=3 acceptance check passed
+  All acceptance checks PASSED successfully!
+  ```
+  Exit code: 0. A separate fresh build/test in the primary checkout also passed all
+  37 tests (`docs/verification/M6_unit.txt`).
+- **Demo**: The same real mission/probe harness verified seed 42 in isolated domain
+  78 with its own output directory: 12/12, zero bank hits, probe 81.6 s, first full
+  collection at 83.0 s, logged duration 84.50 s. Evidence: `seed42.json` in the
+  verification directory. `--show-args` confirmed defaults 42, 12, 0.05, and
+  `~/trash_boat_metrics`.
+- **Shutdown stress**: Ran the existing two real-process tests ten times in an
+  explicit loop; inspected the actual XML after each iteration:
+  ```text
+  {"iteration": 10, "real_process_checks_passed": 20}
+  PASS: 20/20 immediate-stop checks, zero errors/failures/skips
+  ```
+- **Earlier failures**: Initial clean-clone output was `37 tests, 0 errors, 2 failures`
+  because SIGINT/SIGTERM could interrupt lazy executor initialization after readiness
+  was announced. The tests and their traceback assertions were retained; explicit
+  initialization fixed the race. Colcon's optional repeat flag was ignored because
+  pytest-repeat is absent, so an explicit loop provided real repetitions without any
+  installation. An initial patch-copy command ran in the wrong checkout and produced
+  an empty patch; recreating it in the primary checkout corrected the transfer.
+- **Self-review**: Documentation links resolve, workflow YAML parses, and the CI
+  command invokes the full gate. AST comparisons confirm the simulator class and
+  controller decision class are unchanged from M1/M3. Protected tools and SPEC are
+  unchanged from the initial commit; no new decision inputs, topics, or frozen
+  defaults were introduced. Plots were visually checked.
+- **GitHub**: The user supplied `Abhinav-Siddharth/ROS-TRASH`, initially empty. The
+  connected account has write access; Git push dry-run succeeded. The independent
+  `gh auth status` reported an invalid CLI token, so Git transport and the connected
+  GitHub tools are used without changing credentials. Original local milestone
+  history will be preserved in the initial push.
+- **Publication approval**: Automatic approval review rejected the combined
+  commit/push request before execution: publishing all source and documentation to
+  this public repository needs explicit approval of that public export; supplying
+  the URL for CI was not considered sufficient. Local verification is complete.
+  Local commits can proceed independently, but no push or alternate publication
+  method will be attempted without the user's approval. Hosted CI remains unverified.
+
 
 

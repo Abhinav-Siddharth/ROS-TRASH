@@ -22,6 +22,7 @@ import signal
 
 from geometry_msgs.msg import PoseStamped
 import rclpy
+from rclpy.executors import SingleThreadedExecutor
 from rclpy.node import Node
 from rclpy.signals import SignalHandlerOptions
 from std_msgs.msg import Int32, String
@@ -80,7 +81,6 @@ class MetricsLogger(Node):
 
         # 2 Hz logging timer
         self.timer = self.create_timer(0.5, self._log_step)
-        self.get_logger().info(f'Writing metrics to {self.csv_path}')
 
     def _pose_callback(self, msg: PoseStamped) -> None:
         self.x = msg.pose.position.x
@@ -150,13 +150,17 @@ def main(args: list[str] | None = None) -> None:
     signal.signal(signal.SIGINT, signal.default_int_handler)
     signal.signal(signal.SIGTERM, signal.default_int_handler)
     rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
+    executor = SingleThreadedExecutor()
     node = MetricsLogger()
+    executor.add_node(node)
     try:
+        node.get_logger().info(f'Writing metrics to {node.csv_path}')
         while rclpy.ok():
-            rclpy.spin_once(node, timeout_sec=0.1)
+            executor.spin_once(timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
+        executor.shutdown()
         node.write_summary()
         node.destroy_node()
         rclpy.try_shutdown()

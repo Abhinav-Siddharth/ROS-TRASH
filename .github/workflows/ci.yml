@@ -2,13 +2,23 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build-and-test:
     runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONNOUSERSITE: '1'
+      ROS_DOMAIN_ID: '73'
+      ROS_AUTOMATIC_DISCOVERY_RANGE: LOCALHOST
+      ROS_LOG_DIR: ${{ runner.temp }}/trash_boat_roslogs
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -18,20 +28,25 @@ jobs:
         with:
           required-ros-distributions: jazzy
 
-      - name: Install dependencies
+      - name: Install declared dependencies
         run: |
-          sudo apt-get update
           rosdep update
           rosdep install --from-paths src --ignore-src -y
 
-      - name: Build packages
+      - name: Build, test, and run all three acceptance missions
+        shell: bash
         run: |
           source /opt/ros/jazzy/setup.bash
-          colcon build --symlink-install
+          ./tools/verify.sh | tee verification_output.txt
 
-      - name: Run unit & lint tests
-        run: |
-          source /opt/ros/jazzy/setup.bash
-          source install/setup.bash
-          colcon test
-          colcon test-result --verbose
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trash-boat-verification
+          if-no-files-found: warn
+          path: |
+            verification_output.txt
+            log_mission_*.txt
+            ${{ runner.temp }}/trash_boat_roslogs/
+            ~/trash_boat_metrics/

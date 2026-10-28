@@ -1,0 +1,24 @@
+{
+  "seed": 42,
+  "current_m_s": 0.05,
+  "passed": true,
+  "acceptance": {
+    "passed": true,
+    "received_sim_data": true,
+    "collected": 12,
+    "total": 12,
+    "ratio": 1.0,
+    "bank_hits": 0,
+    "wall_seconds": 81.6
+  },
+  "summary": {
+    "items_collected": 12,
+    "duration_s": 84.5,
+    "items_per_min": 8.52,
+    "path_length_m": 60.67,
+    "bank_hits": 0
+  },
+  "time_to_11_s": 77.5,
+  "time_to_12_s": 83.0,
+  "output_directory": "demo_seed42_validation"
+}

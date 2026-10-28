@@ -18,6 +18,7 @@ import signal
 
 from geometry_msgs.msg import PoseArray, PoseStamped, Twist
 import rclpy
+from rclpy.executors import SingleThreadedExecutor
 from rclpy.node import Node
 from rclpy.signals import SignalHandlerOptions
 from std_msgs.msg import Empty, String
@@ -163,13 +164,16 @@ def main(args: list[str] | None = None) -> None:
     signal.signal(signal.SIGINT, signal.default_int_handler)
     signal.signal(signal.SIGTERM, signal.default_int_handler)
     rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
+    executor = SingleThreadedExecutor()
     node = CollectorBrain()
+    executor.add_node(node)
     try:
         while rclpy.ok():
-            rclpy.spin_once(node, timeout_sec=0.1)
+            executor.spin_once(timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
+        executor.shutdown()
         node.destroy_node()
         rclpy.try_shutdown()
 

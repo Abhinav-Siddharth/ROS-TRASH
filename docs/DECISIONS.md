@@ -72,3 +72,17 @@ This document records key design decisions, rationale, and alternatives consider
   it must not be interpreted as successful completion. Shutdown appends a final row
   before summary generation. Duration includes startup and the probe's settling time;
   collection times derived from the 2 Hz CSV have 0.5 s sampling resolution.
+
+### DECISION-006: Initialize explicit executors before announcing readiness
+
+- **Date**: 2026-10-28
+- **What**: Each node owns an explicit `SingleThreadedExecutor`, adds its node before
+  spinning, and shuts down that executor before destroying the node/context. The
+  metrics logger announces its output path only after executor setup is complete.
+- **Why**: Clean-clone verification exposed a race: immediate SIGINT/SIGTERM after
+  the logger's readiness message could interrupt lazy global-executor construction,
+  producing an `AttributeError` in `SingleThreadedExecutor.__del__`. Both real-process
+  tests correctly failed on the traceback even though the process returned zero.
+- **Alternatives**: Delaying the tests, ignoring stderr, or weakening their assertions
+  was rejected. Explicit lifecycle ownership fixes the underlying initialization order.
+  Algorithms, topics, frozen simulator values, and acceptance tools remain unchanged.

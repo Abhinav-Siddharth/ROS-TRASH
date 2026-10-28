@@ -46,6 +46,11 @@ Choose a new, empty output directory for each matrix. The runner refuses to over
 
 Committed numeric evidence: [experiments.json](results/experiments.json). The original run CSVs and logs remain under ignored `log/experiments_20261028/`; rerunning the command regenerates them. The figures were plotted from those CSVs and summaries.
 
+The recorded hashes identify the M5 execution snapshot. M6 subsequently makes executor
+initialization explicit to fix a startup/shutdown race (DECISION-006). The simulator,
+detector core, and controller decision algorithms are unchanged; the final three-seed
+gate rechecks the final lifecycle code.
+
 Historical files supplied in Downloads are excluded because their durations and path lengths do not identify a matching run (see DECISION-003).
 
 ## Limits

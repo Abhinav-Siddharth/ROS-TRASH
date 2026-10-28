@@ -1,0 +1,11 @@
+{"iteration": 1, "real_process_checks_passed": 2}
+{"iteration": 2, "real_process_checks_passed": 4}
+{"iteration": 3, "real_process_checks_passed": 6}
+{"iteration": 4, "real_process_checks_passed": 8}
+{"iteration": 5, "real_process_checks_passed": 10}
+{"iteration": 6, "real_process_checks_passed": 12}
+{"iteration": 7, "real_process_checks_passed": 14}
+{"iteration": 8, "real_process_checks_passed": 16}
+{"iteration": 9, "real_process_checks_passed": 18}
+{"iteration": 10, "real_process_checks_passed": 20}
+PASS: 20/20 immediate-stop checks, zero errors/failures/skips
