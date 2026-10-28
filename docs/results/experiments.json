@@ -1,0 +1,274 @@
+{
+  "started_utc": "2026-10-28T17:28:57.816660+00:00",
+  "source_sha256": {
+    "src/trash_boat_bringup/launch/mission.launch.py": "61793c2de6e34ccaaa005942c36a1bc6cf59fdc0f5c99dcd0fdf5480d69b6210",
+    "src/trash_boat_bringup/launch/sim.launch.py": "706eb8d88d76b22100a5cf17a9982a820cd4750e71673aeae9022d7a88116f55",
+    "src/trash_boat_bringup/setup.py": "18ec6ee576bd1b2f5b6d6f809e3ca915127cd2afc0a62385fc31a1f853ca3ff3",
+    "src/trash_boat_bringup/test/test_copyright.py": "977a2313a0ae218ef9e2b944347d2b8f7aba43447283d2a832391f9904fd37e9",
+    "src/trash_boat_bringup/test/test_flake8.py": "37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2",
+    "src/trash_boat_bringup/test/test_params_consistency.py": "4a980e0043eb76858b7d4fa2c977c62416f2d0bab148a345caba720783fd66b3",
+    "src/trash_boat_bringup/test/test_pep257.py": "e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda",
+    "src/trash_boat_bringup/trash_boat_bringup/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/trash_boat_control/setup.py": "2ae5ff6f809cef38b5805c55218d42ba5996d86acbc9253e37aec884c435d1c7",
+    "src/trash_boat_control/test/test_copyright.py": "977a2313a0ae218ef9e2b944347d2b8f7aba43447283d2a832391f9904fd37e9",
+    "src/trash_boat_control/test/test_flake8.py": "37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2",
+    "src/trash_boat_control/test/test_logic.py": "bf59abed785653c0e0df9f453e8aa932c6a3a351042fd447b07539239c79bee5",
+    "src/trash_boat_control/test/test_metrics_logger.py": "76261f576a063c7acc84102f4b48f56a41841850c57afec3a12e27cff042e02f",
+    "src/trash_boat_control/test/test_pep257.py": "e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda",
+    "src/trash_boat_control/trash_boat_control/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/trash_boat_control/trash_boat_control/collector_brain.py": "46e508bd7199de81ee412e69750249fe0ea88720ef4f5004bc8ecf1fbd7ab728",
+    "src/trash_boat_control/trash_boat_control/logic.py": "6d3c0f5c1ae508dcb1dd5a8623e90dc07e895f6fc4c496429fd682aedfa25596",
+    "src/trash_boat_control/trash_boat_control/metrics_logger.py": "46d2e05aa7a4328338fdba7eabb2c353a27d19fe026cb47b28f05524f427337c",
+    "src/trash_boat_perception/setup.py": "31001ff1baf912700a05d6f56ad804a5ef4b4dd02be0a28283562e77e3e1b50d",
+    "src/trash_boat_perception/test/test_copyright.py": "977a2313a0ae218ef9e2b944347d2b8f7aba43447283d2a832391f9904fd37e9",
+    "src/trash_boat_perception/test/test_detector_core.py": "754b4bc45a35c7e65c52036a5117319f31c584aba3c6413d3128e643e740b82f",
+    "src/trash_boat_perception/test/test_flake8.py": "37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2",
+    "src/trash_boat_perception/test/test_pep257.py": "e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda",
+    "src/trash_boat_perception/trash_boat_perception/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/trash_boat_perception/trash_boat_perception/detector_core.py": "120afc15c772f9773950b5b8cda8098605a34b9abe27fbe790d3db2e76fb9217",
+    "src/trash_boat_perception/trash_boat_perception/trash_detector.py": "370bf3c8806bc28eda3486895e7cdda16856a2e82478f46d3aa28cdf15fdedb4",
+    "src/trash_boat_sim/setup.py": "2ce62ff6c063ba712956d60c138b9be84ba6336df79709fc7146946a05246396",
+    "src/trash_boat_sim/test/test_canal_sim.py": "fbf56e26f35236609ddcecaa056920c05509936fac9c8f7b649d4fb9b3a0fd8a",
+    "src/trash_boat_sim/test/test_copyright.py": "977a2313a0ae218ef9e2b944347d2b8f7aba43447283d2a832391f9904fd37e9",
+    "src/trash_boat_sim/test/test_flake8.py": "37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2",
+    "src/trash_boat_sim/test/test_pep257.py": "e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda",
+    "src/trash_boat_sim/trash_boat_sim/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/trash_boat_sim/trash_boat_sim/canal_sim.py": "c116fe83cd8dc7ae587562e0ccf665162ae32aa4f6bb354717c5bd4539c920b8",
+    "src/trash_boat_bringup/config/params.yaml": "00d10e317486e038a6d85fb276d94ef13c4b5bccaecdc5995796e632898151a7"
+  },
+  "settings": {
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "currents_m_s": [
+      0.0,
+      0.05,
+      0.15
+    ],
+    "n_trash": 12,
+    "timeout_s": 420.0,
+    "min_ratio": 0.9,
+    "max_bank_hits": 3
+  },
+  "runs": [
+    {
+      "seed": 1,
+      "current_m_s": 0.0,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 80.0
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 82.88,
+        "items_per_min": 8.69,
+        "path_length_m": 58.62,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 78.0,
+      "time_to_12_s": 81.5,
+      "output_directory": "seed_1_current_0.0"
+    },
+    {
+      "seed": 2,
+      "current_m_s": 0.0,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 79.0
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 81.85,
+        "items_per_min": 8.8,
+        "path_length_m": 58.28,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 77.5,
+      "time_to_12_s": 80.5,
+      "output_directory": "seed_2_current_0.0"
+    },
+    {
+      "seed": 3,
+      "current_m_s": 0.0,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 81.2
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 84.11,
+        "items_per_min": 8.56,
+        "path_length_m": 60.17,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 72.5,
+      "time_to_12_s": 82.5,
+      "output_directory": "seed_3_current_0.0"
+    },
+    {
+      "seed": 1,
+      "current_m_s": 0.05,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 84.9
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 87.81,
+        "items_per_min": 8.2,
+        "path_length_m": 62.83,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 82.5,
+      "time_to_12_s": 86.5,
+      "output_directory": "seed_1_current_0.05"
+    },
+    {
+      "seed": 2,
+      "current_m_s": 0.05,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 84.1
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 87.0,
+        "items_per_min": 8.28,
+        "path_length_m": 62.42,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 82.5,
+      "time_to_12_s": 85.5,
+      "output_directory": "seed_2_current_0.05"
+    },
+    {
+      "seed": 3,
+      "current_m_s": 0.05,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 84.2
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 87.13,
+        "items_per_min": 8.26,
+        "path_length_m": 62.81,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 76.5,
+      "time_to_12_s": 85.5,
+      "output_directory": "seed_3_current_0.05"
+    },
+    {
+      "seed": 1,
+      "current_m_s": 0.15,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 85.6
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 88.5,
+        "items_per_min": 8.14,
+        "path_length_m": 64.24,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 87.0,
+      "time_to_12_s": 87.0,
+      "output_directory": "seed_1_current_0.15"
+    },
+    {
+      "seed": 2,
+      "current_m_s": 0.15,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 84.9
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 87.83,
+        "items_per_min": 8.2,
+        "path_length_m": 63.15,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 84.0,
+      "time_to_12_s": 86.5,
+      "output_directory": "seed_2_current_0.15"
+    },
+    {
+      "seed": 3,
+      "current_m_s": 0.15,
+      "passed": true,
+      "acceptance": {
+        "passed": true,
+        "received_sim_data": true,
+        "collected": 12,
+        "total": 12,
+        "ratio": 1.0,
+        "bank_hits": 0,
+        "wall_seconds": 82.1
+      },
+      "summary": {
+        "items_collected": 12,
+        "duration_s": 85.0,
+        "items_per_min": 8.47,
+        "path_length_m": 62.2,
+        "bank_hits": 0
+      },
+      "time_to_11_s": 83.5,
+      "time_to_12_s": 83.5,
+      "output_directory": "seed_3_current_0.15"
+    }
+  ],
+  "finished_utc": "2026-10-28T17:41:57.032584+00:00"
+}

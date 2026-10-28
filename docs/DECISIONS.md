@@ -55,3 +55,20 @@ This document records key design decisions, rationale, and alternatives consider
 - **Alternatives**: Editing the protected verification script, changing global ROS
   libraries, or ignoring errors during normal operation were rejected. These changes
   affect process lifecycle only, not simulator physics, collection, or acceptance.
+
+### DECISION-005: Reproducible current experiments using existing node parameters
+
+- **Date**: 2026-10-28
+- **What**: Expose `current` and `output_dir` as typed mission launch arguments for
+  the required M5 experiment matrix. Their defaults remain `0.05` and
+  `~/trash_boat_metrics`, matching the specification and YAML. Each experiment uses
+  a separate output directory and the unchanged acceptance probe.
+- **Why**: The specification requires three current values and attributable metrics.
+  Explicit overrides avoid editing the frozen default configuration between runs.
+  No topics, message types, packages, or ROS parameters are added.
+- **Alternatives**: Mutating the installed YAML for every experiment was rejected as
+  error-prone. The official acceptance run continues to use its frozen defaults.
+- **Metrics interpretation**: CSV `remaining=-1` means simulator status has not arrived;
+  it must not be interpreted as successful completion. Shutdown appends a final row
+  before summary generation. Duration includes startup and the probe's settling time;
+  collection times derived from the 2 Hz CSV have 0.5 s sampling resolution.

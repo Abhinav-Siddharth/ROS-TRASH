@@ -153,5 +153,47 @@ This log records progress and verification output milestone-by-milestone.
   this machine's rosdep database is uninitialized. No sudo/global installation was
   performed. All declared dependencies used here are already installed.
 
+## Milestone M5: Verified metrics and nine measured experiments
+
+- **Status**: PASSED (2026-10-28).
+- **Changes**: Added telemetry/path/final-snapshot tests and real SIGINT/SIGTERM
+  process tests for the metrics logger. The logger records unknown remaining status
+  as -1 until data arrives, appends a final CSV row, and closes idempotently. Existing
+  `current` and `output_dir` parameters are exposed through typed launch arguments
+  for the specified experiment matrix; defaults are unchanged (DECISION-005).
+- **Commands run**:
+  ```bash
+  export PYTHONNOUSERSITE=1 ROS_LOG_DIR=/tmp/trash_boat_roslogs
+  export ROS_DOMAIN_ID=74 ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+  colcon build --symlink-install && colcon test && colcon test-result --verbose
+  source install/setup.bash
+  ROS_DOMAIN_ID=76 python3 docs/run_experiments.py --output-dir log/experiments_20261028
+  ```
+- **Real output excerpts** (complete experiment output: `docs/verification/M5.txt`):
+  ```text
+  Summary: 37 tests, 0 errors, 0 failures, 0 skipped
+  Double value is: 0.0
+  Integer value is: 3
+  Completed 9 experiments: /home/abhi_pop/Desktop/ros-projects/ros-projects/log/experiments_20261028/experiments.json
+  PASS: 9/9 results and all 34 recorded source hashes match the tested files
+  ```
+  The double/integer lines came from separate live `ros2 param get` checks confirming
+  that the requested current and seed actually reached the simulator.
+- **Results**: Every seed/current pair collected 12/12 with zero bank hits. Logged
+  durations were 81.85–88.50 s, with all items first observed collected at 80.5–87.0 s.
+  Each actual launch had four clean node exits and matching final CSV/summary counts
+  and distance. Results, timing definitions, limitations, and plotted trajectories
+  are in `docs/RESULTS.md`; numeric evidence is in `docs/results/experiments.json`.
+  Raw CSVs and launch/probe logs are preserved under ignored `log/experiments_20261028/`.
+- **Earlier checks**: The new experiment utility initially had one E501 (100-character
+  line) and one D213 module-docstring formatting error in its separate style checks.
+  Both were corrected; flake8 and pep257 now report `No problems found`. No mission
+  or experiment failed its acceptance probe.
+- **Self-review**: Charts were visually inspected. Source hashes, frozen defaults,
+  interface count, pure-module separation, and protected files were checked. No
+  ground-truth inputs were added to perception or controller decisions. Standard
+  Python 3.12 fork warnings remain in ament_flake8 output after OpenCV is loaded;
+  they do not cause test errors, failures, or skips.
+
 
 

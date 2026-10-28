@@ -45,9 +45,16 @@ def generate_launch_description() -> LaunchDescription:
         default_value='12',
         description='Total number of trash items to spawn',
     )
+    current_arg = DeclareLaunchArgument(
+        'current', default_value='0.05', description='Downstream trash drift in metres/second',
+    )
+    output_dir_arg = DeclareLaunchArgument(
+        'output_dir', default_value='~/trash_boat_metrics', description='Metrics output directory',
+    )
 
     seed_val = ParameterValue(LaunchConfiguration('seed'), value_type=int)
     n_trash_val = ParameterValue(LaunchConfiguration('n_trash'), value_type=int)
+    current_val = ParameterValue(LaunchConfiguration('current'), value_type=float)
 
     canal_sim_node = Node(
         package='trash_boat_sim',
@@ -59,6 +66,7 @@ def generate_launch_description() -> LaunchDescription:
             {
                 'seed': seed_val,
                 'n_trash': n_trash_val,
+                'current': current_val,
             },
         ],
     )
@@ -84,13 +92,17 @@ def generate_launch_description() -> LaunchDescription:
         executable='metrics_logger',
         name='metrics_logger',
         output='screen',
-        parameters=[params_file],
+        parameters=[params_file, {
+            'output_dir': ParameterValue(LaunchConfiguration('output_dir'), value_type=str),
+        }],
     )
 
     return LaunchDescription(
         [
             seed_arg,
             n_trash_arg,
+            current_arg,
+            output_dir_arg,
             canal_sim_node,
             trash_detector_node,
             collector_brain_node,

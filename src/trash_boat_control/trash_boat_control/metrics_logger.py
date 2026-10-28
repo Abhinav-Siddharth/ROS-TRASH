@@ -18,10 +18,12 @@ import csv
 import json
 import math
 import os
+import signal
 
 from geometry_msgs.msg import PoseStamped
 import rclpy
 from rclpy.node import Node
+from rclpy.signals import SignalHandlerOptions
 from std_msgs.msg import Int32, String
 
 
@@ -46,7 +48,7 @@ class MetricsLogger(Node):
         self.path_length: float = 0.0
 
         self.collected: int = 0
-        self.remaining: int = 0
+        self.remaining: int = -1  # Unknown until simulator status arrives.
         self.bank_hits: int = 0
         self.brain_state: str = 'SEARCH'
 
@@ -78,6 +80,7 @@ class MetricsLogger(Node):
 
         # 2 Hz logging timer
         self.timer = self.create_timer(0.5, self._log_step)
+        self.get_logger().info(f'Writing metrics to {self.csv_path}')
 
     def _pose_callback(self, msg: PoseStamped) -> None:
         self.x = msg.pose.position.x
@@ -119,6 +122,9 @@ class MetricsLogger(Node):
 
     def write_summary(self) -> None:
         """Write summary.json on shutdown."""
+        if self.csv_file.closed:
+            return
+        self._log_step()
         now = self.get_clock().now().nanoseconds * 1e-9
         duration_s = max(0.001, now - self.start_time)
         items_per_min = self.collected / (duration_s / 60.0)
@@ -134,16 +140,20 @@ class MetricsLogger(Node):
         summary_path = os.path.join(self.output_dir, 'summary.json')
         with open(summary_path, 'w', encoding='utf-8') as f:
             json.dump(summary_data, f, indent=2)
+            f.write('\n')
 
         if not self.csv_file.closed:
             self.csv_file.close()
 
 
 def main(args: list[str] | None = None) -> None:
-    rclpy.init(args=args)
+    signal.signal(signal.SIGINT, signal.default_int_handler)
+    signal.signal(signal.SIGTERM, signal.default_int_handler)
+    rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
     node = MetricsLogger()
     try:
-        rclpy.spin(node)
+        while rclpy.ok():
+            rclpy.spin_once(node, timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
