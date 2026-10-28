@@ -1,0 +1,11 @@
+{
+  "run_id": 40742785234,
+  "url": "https://github.com/Abhinav-Siddharth/ROS-TRASH/actions/runs/40742785234",
+  "head_sha": "7b1643f0d217d714388a27cb2668b7e5bb3d08ba",
+  "status": "completed",
+  "conclusion": "success",
+  "workflow_path": ".github/workflows/ci.yml",
+  "job_id": 123008521866,
+  "os": "ubuntu-24.04",
+  "ros": "jazzy"
+}

@@ -197,8 +197,8 @@ This log records progress and verification output milestone-by-milestone.
 
 ## Milestone M6: Course documentation, clean-clone checks, and hosted CI
 
-- **Local status**: PASSED (2026-10-28). Hosted CI is pending the first push; its
-  actual result will be appended below after the run completes.
+- **Status**: PASSED (2026-10-28), including clean Ubuntu 24.04/Jazzy hosted CI.
+  The actual hosted output and run are recorded below.
 - **Changes**: Rewrote the README with setup/run instructions, a Mermaid architecture,
   coordinate/state explanations, monitoring, verification, results, and limitations.
   Added `docs/EXPLAIN.md` with a presentation script and viva questions. CI now runs
@@ -290,6 +290,31 @@ This log records progress and verification output milestone-by-milestone.
   `/opt/ros/jazzy/setup.bash` in the dependency step supplies the required distro.
   The build/mission step was automatically not executed after the dependency failure;
   it remains present and unchanged for the retry.
+
+### Final hosted gate: PASSED
+
+- Run: `https://github.com/Abhinav-Siddharth/ROS-TRASH/actions/runs/40742785234`.
+- Tested runtime commit: `7b1643f0d217d714388a27cb2668b7e5bb3d08ba`.
+- GitHub returned `status=completed`, `conclusion=success`. Checkout, ROS setup,
+  declared dependency installation, the complete verifier, and evidence upload all
+  succeeded. This validates dependency resolution on a clean Ubuntu 24.04 runner,
+  independently of the locally uninitialized rosdep database.
+- Real hosted verifier output (full extracted output: `verification/hosted_verify.txt`):
+  ```text
+  Summary: 37 tests, 0 errors, 0 failures, 0 skipped
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 85.2}
+  PASSED: SEED=1 acceptance check passed
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.6}
+  PASSED: SEED=2 acceptance check passed
+  {"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.8}
+  PASSED: SEED=3 acceptance check passed
+  All acceptance checks PASSED successfully!
+  ```
+- All M0–M6 gates are now satisfied. All nine M5 experiments and the seed-42 demo
+  passed, and the immediate-stop regression passed 20/20 real-process checks.
+  Algorithms, protected tools, thresholds, and frozen simulator values remain intact.
+- The final documentation commit records this already successful runtime gate;
+  it does not change executable code. The live CI badge tracks subsequent runs.
 
 
 

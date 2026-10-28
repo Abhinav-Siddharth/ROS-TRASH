@@ -1,0 +1,99 @@
+==========================================
+1. Building workspace
+==========================================
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+--- stderr: trash_boat_perception
+Finished <<< trash_boat_perception [5.58s]
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+--- stderr: trash_boat_sim
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< trash_boat_sim [5.60s]
+--- stderr: trash_boat_control
+Finished <<< trash_boat_control [5.78s]
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Starting >>> trash_boat_bringup
+--- stderr: trash_boat_bringup
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+---
+Finished <<< trash_boat_bringup [2.99s]
+
+Summary: 4 packages finished [9.58s]
+  4 packages had stderr output: trash_boat_bringup trash_boat_control trash_boat_perception trash_boat_sim
+==========================================
+2. Running unit and lint tests
+==========================================
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+--- stderr: trash_boat_perception
+Finished <<< trash_boat_perception [3.51s]
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: This process (pid=15122) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+--- stderr: trash_boat_sim
+Finished <<< trash_boat_sim [3.95s]
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: This process (pid=15124) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+--- stderr: trash_boat_control
+Finished <<< trash_boat_control [4.41s]
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: This process (pid=15126) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.93s]
+
+Summary: 4 packages finished [6.59s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim
+Summary: 37 tests, 0 errors, 0 failures, 0 skipped
+==========================================
+3. Running integration acceptance tests
+==========================================
+------------------------------------------
+Running acceptance check for SEED=1...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 85.2}
+PASSED: SEED=1 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=2...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.6}
+PASSED: SEED=2 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=3...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.8}
+PASSED: SEED=3 acceptance check passed
+==========================================
+All acceptance checks PASSED successfully!
+==========================================
