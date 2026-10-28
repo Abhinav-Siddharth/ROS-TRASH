@@ -57,3 +57,30 @@ This log records progress and verification output milestone-by-milestone.
   ```
 - **Result**: `canal_sim` node running with unicycle physics, seeded trash spawning, trash drift, scoop collection, bank contact detection, and 10 Hz camera rendering. 4 unit tests in `test_canal_sim.py` passed cleanly. Camera publishing verified at 10.0 Hz and reference frame saved to `docs/img/sim_frame.png`.
 
+---
+
+## Milestone M2: Perception (`trash_detector`) & `detector_core.py`
+
+- **Status**: PASSED
+- **Gate**: Detector tests pass; with the sim running, `/trash_detections` is non-empty when orange dots are in view.
+- **Commands Run**:
+  ```bash
+  # Unit & lint tests
+  ./tools/verify.sh --no-integration
+
+  # Gate integration test
+  ros2 run trash_boat_sim canal_sim &
+  ros2 run trash_boat_perception trash_detector &
+  # Commanded boat forward into view of trash and listened to /trash_detections
+  ```
+- **Real Output Excerpt**:
+  ```text
+  Summary: 4 packages finished [2.81s]
+  Summary: 21 tests, 0 errors, 0 failures, 0 skipped
+  Unit-only verification completed successfully!
+
+  M2 Gate SUCCESS: Detected 1 trash item(s) on /trash_detections
+  ```
+- **Result**: `detector_core.py` implemented as pure module and verified across 5 unit tests (`pixel_to_body`, disc detection, background color rejection, distance sorting, and min area filtering). `trash_detector` node successfully processes `/camera/image_raw` and publishes body-frame detections on `/trash_detections` and circled detections on `/trash_detector/debug_image`.
+
+
