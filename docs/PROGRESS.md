@@ -83,4 +83,23 @@ This log records progress and verification output milestone-by-milestone.
   ```
 - **Result**: `detector_core.py` implemented as pure module and verified across 5 unit tests (`pixel_to_body`, disc detection, background color rejection, distance sorting, and min area filtering). `trash_detector` node successfully processes `/camera/image_raw` and publishes body-frame detections on `/trash_detections` and circled detections on `/trash_detector/debug_image`.
 
+---
+
+## Milestone M3: Control Logic (`collector_brain`) & `logic.py`
+
+- **Status**: PASSED
+- **Gate**: Logic tests pass (`colcon test` clean).
+- **Commands Run**:
+  ```bash
+  ./tools/verify.sh --no-integration
+  ```
+- **Real Output Excerpt**:
+  ```text
+  Summary: 4 packages finished [2.87s]
+  Summary: 30 tests, 0 errors, 0 failures, 0 skipped
+  Unit-only verification completed successfully!
+  ```
+- **Result**: `CollectorLogic` pure decision module implemented with 4-tier prioritized state machine (`AVOID_BANK` > `COLLECT` > `APPROACH` > `SEARCH`) along with quaternion and angle wrapping helpers. All 9 required logic test cases in `test_logic.py` and linters passed with 0 errors, 0 failures, 0 skipped.
+
+
 
