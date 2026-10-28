@@ -30,6 +30,7 @@ jobs:
 
       - name: Install declared dependencies
         run: |
+          source /opt/ros/jazzy/setup.bash
           rosdep update
           rosdep install --from-paths src --ignore-src -y
 

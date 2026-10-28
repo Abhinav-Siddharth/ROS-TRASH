@@ -278,6 +278,18 @@ This log records progress and verification output milestone-by-milestone.
   checks endpoint returned an empty list for the invalid workflow. No job logs were
   available for that initial validation failure. The corrected workflow is retried
   via a normal follow-up push, not by weakening tests or mission thresholds.
+- Run `40741867555` accepted the corrected workflow and successfully installed ROS 2
+  Jazzy, then failed in the separate dependency step. The actual job log reported:
+  ```text
+  WARNING: ROS_PYTHON_VERSION is unset. Defaulting to 3
+  ERROR: the following packages/stacks could not have their rosdep keys resolved
+  to system dependencies (ROS distro is not set.
+  trash_boat_sim: Cannot locate rosdep definition for [ament_pep257]
+  ```
+  GitHub starts each step in a new shell; explicitly sourcing
+  `/opt/ros/jazzy/setup.bash` in the dependency step supplies the required distro.
+  The build/mission step was automatically not executed after the dependency failure;
+  it remains present and unchanged for the retry.
 
 
 
