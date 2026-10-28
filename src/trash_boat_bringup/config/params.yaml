@@ -1,0 +1,44 @@
+canal_sim:
+  ros__parameters:
+    canal_length: 60.0
+    half_width: 4.0
+    n_trash: 12
+    current: 0.05
+    seed: 42
+    image_size: 400
+    pixels_per_meter: 40.0
+
+trash_detector:
+  ros__parameters:
+    hsv_lower: [5, 150, 150]
+    hsv_upper: [25, 255, 255]
+    min_area: 20.0
+    max_area: 800.0
+    image_size: 400
+    pixels_per_meter: 40.0
+
+collector_brain:
+  ros__parameters:
+    control_rate: 20.0
+    search_speed: 0.8
+    approach_speed: 0.8
+    min_approach_speed: 0.15
+    k_ang: 1.5
+    k_lin: 0.5
+    w_max: 1.2
+    detection_timeout: 0.5
+    collect_fwd_min: 0.2
+    collect_fwd_max: 1.2
+    collect_lateral_max: 0.6
+    collect_cooldown: 0.5
+    canal_length: 60.0
+    half_width: 4.0
+    end_margin: 2.0
+    patrol_aim_distance: 3.0
+    bank_margin: 0.8
+    bank_hysteresis: 0.3
+    bank_speed: 0.3
+
+metrics_logger:
+  ros__parameters:
+    output_dir: '~/trash_boat_metrics'

@@ -16,6 +16,7 @@
 
 import math
 import random
+import signal
 
 import cv2
 from cv_bridge import CvBridge
@@ -23,6 +24,7 @@ from geometry_msgs.msg import PoseStamped, Twist
 import numpy as np
 import rclpy
 from rclpy.node import Node
+from rclpy.signals import SignalHandlerOptions
 from sensor_msgs.msg import Image
 from std_msgs.msg import Empty, Int32
 
@@ -264,10 +266,13 @@ class CanalSim(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    rclpy.init(args=args)
+    signal.signal(signal.SIGINT, signal.default_int_handler)
+    signal.signal(signal.SIGTERM, signal.default_int_handler)
+    rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
     node = CanalSim()
     try:
-        rclpy.spin(node)
+        while rclpy.ok():
+            rclpy.spin_once(node, timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:

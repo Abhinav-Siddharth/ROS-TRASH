@@ -3,7 +3,7 @@
 <package format="3">
   <name>trash_boat_control</name>
   <version>0.0.0</version>
-  <description>Control package for trash_boat</description>
+  <description>Visual trash approach, canal patrol, collection, and mission metrics.</description>
   <maintainer email="rudra@example.com">Rudra Modi</maintainer>
   <license>Apache-2.0</license>
 

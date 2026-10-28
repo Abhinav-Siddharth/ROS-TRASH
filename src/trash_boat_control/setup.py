@@ -39,6 +39,7 @@ setup(
     entry_points={
         'console_scripts': [
             'collector_brain = trash_boat_control.collector_brain:main',
+            'metrics_logger = trash_boat_control.metrics_logger:main',
         ],
     },
 )

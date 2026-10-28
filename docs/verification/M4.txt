@@ -1,0 +1,65 @@
+==========================================
+1. Building workspace
+==========================================
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Finished <<< trash_boat_perception [1.52s]
+Finished <<< trash_boat_control [1.53s]
+Finished <<< trash_boat_sim [1.53s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.24s]
+
+Summary: 4 packages finished [2.92s]
+==========================================
+2. Running unit and lint tests
+==========================================
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Finished <<< trash_boat_control [0.87s]
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=27443) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.19s]
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=27445) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.80s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [0.97s]
+
+Summary: 4 packages finished [2.88s]
+  2 packages had stderr output: trash_boat_perception trash_boat_sim
+Summary: 33 tests, 0 errors, 0 failures, 0 skipped
+==========================================
+3. Running integration acceptance tests
+==========================================
+------------------------------------------
+Running acceptance check for SEED=1...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.5}
+PASSED: SEED=1 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=2...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.4}
+PASSED: SEED=2 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=3...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.5}
+PASSED: SEED=3 acceptance check passed
+==========================================
+All acceptance checks PASSED successfully!
+==========================================

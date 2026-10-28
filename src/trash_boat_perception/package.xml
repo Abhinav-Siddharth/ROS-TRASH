@@ -3,7 +3,7 @@
 <package format="3">
   <name>trash_boat_perception</name>
   <version>0.0.0</version>
-  <description>Perception package for trash_boat</description>
+  <description>Camera-only orange trash detection in the boat frame.</description>
   <maintainer email="rudra@example.com">Rudra Modi</maintainer>
   <license>Apache-2.0</license>
 
@@ -11,6 +11,8 @@
   <depend>cv_bridge</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

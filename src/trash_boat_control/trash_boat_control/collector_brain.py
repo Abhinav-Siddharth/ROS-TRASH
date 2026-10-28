@@ -14,9 +14,12 @@
 
 """Collector brain node executing navigation, trash approach, and scoop control."""
 
+import signal
+
 from geometry_msgs.msg import PoseArray, PoseStamped, Twist
 import rclpy
 from rclpy.node import Node
+from rclpy.signals import SignalHandlerOptions
 from std_msgs.msg import Empty, String
 
 from trash_boat_control.logic import CollectorLogic, yaw_from_quaternion
@@ -157,10 +160,13 @@ class CollectorBrain(Node):
 
 
 def main(args: list[str] | None = None) -> None:
-    rclpy.init(args=args)
+    signal.signal(signal.SIGINT, signal.default_int_handler)
+    signal.signal(signal.SIGTERM, signal.default_int_handler)
+    rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
     node = CollectorBrain()
     try:
-        rclpy.spin(node)
+        while rclpy.ok():
+            rclpy.spin_once(node, timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
