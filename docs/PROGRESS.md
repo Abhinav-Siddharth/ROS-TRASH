@@ -262,5 +262,22 @@ This log records progress and verification output milestone-by-milestone.
   Local commits can proceed independently, but no push or alternate publication
   method will be attempted without the user's approval. Hosted CI remains unverified.
 
+### M6 publication and CI follow-up
+
+- The user explicitly approved public publication and CI after the review block.
+  `git push -u origin main` succeeded, preserving the original milestone history at
+  `https://github.com/Abhinav-Siddharth/ROS-TRASH` (initial head `b24a97a`).
+- The first hosted workflow run failed before creating any jobs:
+  `https://github.com/Abhinav-Siddharth/ROS-TRASH/actions/runs/40741499826`.
+  The workflow's job-level environment used `runner.temp`, but `runner` is unavailable
+  at that key according to GitHub's official context-availability table:
+  `https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability`.
+  Replaced it with the same explicit writable `/tmp/trash_boat_roslogs` path used
+  locally, including the matching artifact path. No verification step was removed.
+- The connected fetch tool does not expose check-suite endpoints, and the public
+  checks endpoint returned an empty list for the invalid workflow. No job logs were
+  available for that initial validation failure. The corrected workflow is retried
+  via a normal follow-up push, not by weakening tests or mission thresholds.
+
 
 
