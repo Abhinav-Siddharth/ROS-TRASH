@@ -375,3 +375,29 @@ This log records progress and verification output milestone-by-milestone.
   original algorithms and frozen defaults untouched. The elevated renderer emits
   EGL probe warnings for the unused NVIDIA device, then successfully renders; no
   driver or global settings were changed.
+
+### VRX M2: rendered perception gate PASSED
+
+- Added pure pinhole/water-plane projection with boat quaternion, position and
+  known camera mount. The thin detector subscribes ONLY to camera image/calibration
+  and boat localization, uses the existing pure orange-blob detector, publishes
+  nearest-first detections and a real annotated debug image for each frame.
+- Unit checks cover reference pixel directions, combined roll/pitch/yaw, invalid
+  calibration/quaternions, horizon and range rejection. Fixed the reported docstring
+  and decorator formatting errors without changing any assertion or lint rule.
+- Live world `headless:=true seed:=1 boat_x:=10` plus the actual `water_detector`
+  node with simulation time. A controlled calibration placement (not mission input)
+  gave expected body position [3,1] and image-derived [3.08397,1.03487] metres:
+  ```text
+  {"passed": true, "rendered_debug_frames": 12, "expected_body": [3, 1],
+   "detected_body": [3.083971674557771, 1.0348742031273284],
+   "wall_seconds": 3.99}
+  ```
+  `docs/img/vrx_detection_M2.png` was visually inspected; both orange objects are
+  circled in the rendered canal. Small projection bias comes from projecting the
+  visible top of a floating sphere onto the nominal water plane.
+- Final `colcon build --symlink-install --parallel-workers 2 && colcon test
+  --event-handlers console_cohesion+ && colcon test-result --verbose`:
+  `Summary: 57 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M2_{build,test,probe}.txt`. Both real node processes
+  stopped cleanly. The reference detector and controller modules remain unchanged.

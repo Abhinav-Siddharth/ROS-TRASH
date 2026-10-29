@@ -1,0 +1,1 @@
+{"passed": true, "rendered_debug_frames": 12, "expected_body": [3, 1], "detected_body": [3.083971674557771, 1.0348742031273284], "detections": [[3.083971674557771, 1.0348742031273284], [2.720814469330129, -3.073768992928368]], "wall_seconds": 3.99}

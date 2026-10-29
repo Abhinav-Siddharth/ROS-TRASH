@@ -15,7 +15,7 @@ target_link_libraries(TrashWorld gz-sim8::core gz-transport13::core
 install(TARGETS TrashWorld DESTINATION lib)
 ament_python_install_package(${PROJECT_NAME})
 install(DIRECTORY config launch DESTINATION share/${PROJECT_NAME})
-install(PROGRAMS scripts/generate_world DESTINATION lib/${PROJECT_NAME})
+install(PROGRAMS scripts/generate_world scripts/water_detector DESTINATION lib/${PROJECT_NAME})
 ament_environment_hooks(hooks/paths.dsv.in hooks/paths.sh)
 if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
