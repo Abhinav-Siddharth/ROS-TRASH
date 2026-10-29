@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>trash_boat_vrx</name>
+  <version>1.0.0</version>
+  <description>VRX canal, physical collector, rendered perception and thruster integration.</description>
+  <maintainer email="abhinav-siddharth@users.noreply.github.com">Abhinav Siddharth</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+  <depend>gz_sim_vendor</depend>
+  <depend>gz_transport_vendor</depend>
+  <depend>gz_plugin_vendor</depend>
+  <depend>gz_msgs_vendor</depend>
+  <exec_depend>vrx_gz</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>rosgraph_msgs</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>trash_boat_bringup</exec_depend>
+  <exec_depend>trash_boat_perception</exec_depend>
+  <exec_depend>trash_boat_control</exec_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

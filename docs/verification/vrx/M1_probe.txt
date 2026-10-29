@@ -1,0 +1,2 @@
+{"collected": 0, "remaining": 12, "bank_hits": 0, "camera_fx": 240.00000953674316, "contact_sensor_topic": true, "images": 20, "poses": 100, "last_pose": [2.0, 0.0, 0.12543004729965884], "wall_seconds": 10.07}
+PASS: explicit scoop, outside item retained, no duplicate score, actual bank contacts {"collected": 1, "remaining": 11, "bank_hits": 1, "camera_fx": 240.00000953674316, "contact_sensor_topic": true, "images": 20, "poses": 100, "last_pose": [2.0, 0.0, 0.12543004729965884], "wall_seconds": 10.07}

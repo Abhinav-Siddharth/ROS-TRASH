@@ -338,3 +338,40 @@ This log records progress and verification output milestone-by-milestone.
   `Summary: 37 tests, 0 errors, 0 failures, 0 skipped`.
 - Evidence: `docs/verification/vrx/M0_build.txt`, `M0_test.txt`. No system installs,
   no protected tool changes, no algorithm/default changes.
+
+### VRX M1: world and physical scoring gate PASSED
+
+- Added the approved integration package with a deterministic, offline SDF generator,
+  upstream VRX Surface/SimpleHydrodynamics/PolyhedraBuoyancyDrag systems, a real RGB
+  camera, hull contact sensor, and simulator-only C++ force/scoring system.
+- `ros2 run trash_boat_vrx generate_world /tmp/trash_boat_canal.sdf &&
+  gz sdf -k /tmp/trash_boat_canal.sdf`: `Valid.`
+- Actual `world.launch.py headless:=true seed:=1`, isolated domains/partitions,
+  system Python and approved graphics/DDS access; live ROS probe output:
+  ```text
+  {"collected": 0, "remaining": 12, "bank_hits": 0,
+   "camera_fx": 240.00000953674316, "contact_sensor_topic": true,
+   "images": 20, "poses": 100,
+   "last_pose": [2.0, 0.0, 0.12543004729965884], "wall_seconds": 10.07}
+  PASS: explicit scoop, outside item retained, no duplicate score, actual bank contacts
+  {"collected": 1, "remaining": 11, "bank_hits": 1, ...}
+  ```
+  The scoring probe deliberately placed two objects with Gazebo's set_pose service
+  (one inside, one outside), requested two scoops, then drove the boat into a bank
+  with thruster forces. These are controlled scorer tests, NOT acceptance missions.
+  Nominal trials retain the exact seeded spawn distribution. Screenshot:
+  `docs/img/vrx_camera_M1.png`. Both Gazebo and bridge exited cleanly.
+- Failures caught and fixed: missing plugin search path (added proper ament DSV and
+  explicit launch path), camera calibration topic is `/vrx/camera_info`, and launch
+  cleanup can receive repeated shutdown events. Local GZ_IP removes a long discovery
+  delay. Early probes failed honestly on missing data; no assertion was removed.
+- Corrected the new CMake package's lint tests to inspect the source directory, not
+  its build directory. Actual source checks caught three indentation errors and
+  unsupported SPDX-only C++ headers; fixed formatting and added full license headers.
+- Final pre-commit `colcon build --symlink-install --parallel-workers 2 && colcon test
+  --event-handlers console_cohesion+ && colcon test-result --verbose`:
+  `Summary: 51 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M1_{build,test,probe,runtime}.txt`. Protected tools,
+  original algorithms and frozen defaults untouched. The elevated renderer emits
+  EGL probe warnings for the unused NVIDIA device, then successfully renders; no
+  driver or global settings were changed.
