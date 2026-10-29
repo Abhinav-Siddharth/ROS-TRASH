@@ -1,0 +1,63 @@
+{"collected": 0, "remaining": 12, "bank_hits": 0, "sim_seconds": 7.205, "images": 73, "detection_frames": 72, "nonempty_detections": 38, "commands": 144, "thruster_messages": 144, "poses": 136, "states": {"SEARCH": 68, "APPROACH": 76}, "last_pose": [7.368972920903103, 0.12463046332947446]}
+{"collected": 1, "remaining": 11, "bank_hits": 0, "sim_seconds": 17.21, "images": 173, "detection_frames": 172, "nonempty_detections": 138, "commands": 344, "thruster_messages": 344, "poses": 323, "states": {"SEARCH": 68, "APPROACH": 266, "COLLECT": 10}, "last_pose": [13.258349703527628, -2.122759331543216]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 27.215, "images": 273, "detection_frames": 273, "nonempty_detections": 239, "commands": 544, "thruster_messages": 544, "poses": 510, "states": {"SEARCH": 68, "APPROACH": 456, "COLLECT": 20}, "last_pose": [14.390501819408263, -1.7432692902526754]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 37.22, "images": 373, "detection_frames": 373, "nonempty_detections": 339, "commands": 744, "thruster_messages": 744, "poses": 695, "states": {"SEARCH": 68, "APPROACH": 646, "COLLECT": 30}, "last_pose": [19.290449243116527, 2.1902740117814754]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 47.22, "images": 473, "detection_frames": 473, "nonempty_detections": 439, "commands": 944, "thruster_messages": 944, "poses": 878, "states": {"SEARCH": 68, "APPROACH": 846, "COLLECT": 30}, "last_pose": [24.689991002437324, 2.2103103340241748]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 57.225, "images": 573, "detection_frames": 573, "nonempty_detections": 539, "commands": 1144, "thruster_messages": 1144, "poses": 1060, "states": {"SEARCH": 68, "APPROACH": 1046, "COLLECT": 30}, "last_pose": [29.728527449818227, 2.2104002440920407]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 67.23, "images": 673, "detection_frames": 673, "nonempty_detections": 639, "commands": 1344, "thruster_messages": 1344, "poses": 1243, "states": {"SEARCH": 68, "APPROACH": 1246, "COLLECT": 30}, "last_pose": [34.73112113975918, 2.1961839345364362]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 77.23, "images": 773, "detection_frames": 773, "nonempty_detections": 739, "commands": 1544, "thruster_messages": 1544, "poses": 1426, "states": {"SEARCH": 68, "APPROACH": 1446, "COLLECT": 30}, "last_pose": [39.66895512983389, 2.1977283809231163]}
+{"collected": 6, "remaining": 6, "bank_hits": 0, "sim_seconds": 87.235, "images": 873, "detection_frames": 873, "nonempty_detections": 805, "commands": 1744, "thruster_messages": 1744, "poses": 1609, "states": {"SEARCH": 126, "APPROACH": 1578, "COLLECT": 40}, "last_pose": [44.5009133274976, 1.4066026583239228]}
+{"collected": 7, "remaining": 5, "bank_hits": 0, "sim_seconds": 97.24, "images": 973, "detection_frames": 973, "nonempty_detections": 894, "commands": 1944, "thruster_messages": 1944, "poses": 1792, "states": {"SEARCH": 150, "APPROACH": 1744, "COLLECT": 50}, "last_pose": [50.049849629417054, -1.9183452824521745]}
+{"collected": 9, "remaining": 3, "bank_hits": 0, "sim_seconds": 107.24, "images": 1073, "detection_frames": 1073, "nonempty_detections": 994, "commands": 2144, "thruster_messages": 2144, "poses": 1975, "states": {"SEARCH": 150, "APPROACH": 1924, "COLLECT": 70}, "last_pose": [55.34005687673353, -1.1390028879428031]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 117.24, "images": 1173, "detection_frames": 1173, "nonempty_detections": 1094, "commands": 2344, "thruster_messages": 2344, "poses": 2158, "states": {"SEARCH": 150, "APPROACH": 2114, "COLLECT": 80}, "last_pose": [58.211776699693225, -2.547932546216528]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 127.245, "images": 1273, "detection_frames": 1273, "nonempty_detections": 1194, "commands": 2544, "thruster_messages": 2544, "poses": 2341, "states": {"SEARCH": 150, "APPROACH": 2314, "COLLECT": 80}, "last_pose": [58.54740533757517, -0.012833910844303785]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 137.25, "images": 1373, "detection_frames": 1373, "nonempty_detections": 1200, "commands": 2744, "thruster_messages": 2744, "poses": 2532, "states": {"SEARCH": 302, "APPROACH": 2351, "COLLECT": 91}, "last_pose": [54.847663215507325, 0.015247651118243739]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 147.25, "images": 1473, "detection_frames": 1473, "nonempty_detections": 1200, "commands": 2944, "thruster_messages": 2944, "poses": 2724, "states": {"SEARCH": 502, "APPROACH": 2351, "COLLECT": 91}, "last_pose": [46.84770582483074, -4.860314330967201e-05]}
+{
+  "backend": "vrx",
+  "seed": 1,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=1",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m4_seed1_docking"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 154.605,
+  "images": 1546,
+  "detection_frames": 1546,
+  "nonempty_detections": 1247,
+  "commands": 3092,
+  "thruster_messages": 3092,
+  "poses": 2865,
+  "states": {
+    "SEARCH": 556,
+    "APPROACH": 2443,
+    "COLLECT": 93
+  },
+  "last_pose": [
+    40.9923892227713,
+    -0.2198505732618299
+  ],
+  "wall_seconds": 157.4,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 154.61,
+    "items_per_min": 4.66,
+    "path_length_m": 83.79,
+    "bank_hits": 0
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}

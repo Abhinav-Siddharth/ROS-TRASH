@@ -24,3 +24,15 @@ thruster_controller:
     yaw_gain: 50.0
     command_timeout: 0.5
     odometry_timeout: 0.5
+collector_brain:
+  ros__parameters:
+    bank_margin: 0.8
+    shore_clearance: 1.8
+    end_clearance: 1.4
+    arrival_radius: 0.25
+    alignment_distance: 1.1
+    dock_speed: 0.3
+    dock_heading_tolerance: 0.15
+    dock_bank_margin: 1.1
+    retreat_speed: 0.3
+    turn_in_place_threshold: 0.6

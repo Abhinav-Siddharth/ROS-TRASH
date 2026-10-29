@@ -426,3 +426,42 @@ This log records progress and verification output milestone-by-milestone.
   `Summary: 66 tests, 0 errors, 0 failures, 0 skipped`.
 - Evidence: `docs/verification/vrx/M3_{build,test,probe}.txt`. Reference decision logic
   and speed defaults unchanged. No trash status/positions enter thruster control.
+
+### VRX M4: autonomous physical mission gate PASSED
+
+- Added the full VRX mission launch (Gazebo, bridge, rendered perception, camera-only
+  marine brain, force controller, real metrics logger) and independent acceptance
+  monitor. The monitor requires real image/detection/command/pose traffic, exact
+  12-item accounting, unchanged >=11/12 within 420 simulated seconds and <=3 actual
+  contact transitions, CSV/summary agreement, and no runtime errors on shutdown.
+- Real initial attempts exposed distinct failures, retained as evidence:
+  - 12/12 at 90.8 s, one contact, but teardown tracebacks from double SIGINT: FAIL.
+  - Clearance-margin-only fix: four real contact transitions at 39.615 s: FAIL.
+  - Fixed safe waypoint: zero hits but stalled on an item displaced toward a bank;
+    intentionally interrupted diagnostic run around 140 s: FAIL, never acceptance.
+- Inspected state/pose/commands and camera-derived detections, recorded an eight-topic
+  real rosbag (14.24 s, 1960 messages), decoded its images and visually inspected
+  `docs/img/vrx_diagnostic_debug.png`. No bag is tracked. Decisions 008–010 explain
+  the fixes: single-parent interrupt forwarding, cleanup immune to repeated signals,
+  safe approach staging, controlled aligned docking, and reverse retreat before
+  turning away. Search turns with large heading error happen in place.
+- The reference decision class still decides collection from the REAL visual target.
+  A waypoint cannot trigger collection. Original modules/defaults/physics are unchanged
+  except orderly cleanup in node main functions. The new marine algorithm is pure,
+  with declared parameters, and no trash ground truth enters decisions.
+- Actual command (system Python, localhost transports, isolated domain 84):
+  `ros2 run trash_boat_vrx verify_mission --seed 1 --output log/vrx_m4_seed1_docking`
+  ```text
+  collected=12, remaining=0, bank_hits=0, sim_seconds=154.61
+  images=1546, detection_frames=1546, clean_shutdown=true
+  metrics: duration_s=154.61, path_length_m=83.79, items_per_min=4.66
+  runtime_errors=[], passed=true, error=null
+  ```
+  The complete measured JSON is authoritative if a rounded excerpt differs.
+- Final pre-commit build/test/result gate: `Summary: 74 tests, 0 errors, 0 failures,
+  0 skipped`. Includes a real-node repeated SIGINT/SIGTERM teardown regression,
+  waypoint-versus-real-target distinction, docking/retreat, launch validity, no
+  forbidden decision inputs, and metric mismatch rejection.
+- Evidence: `docs/verification/vrx/M4_*`. Failed attempts remain explicitly marked.
+  Protected tools and SPEC section 7 were not edited; no frozen environment settings
+  or collection bounds were changed.

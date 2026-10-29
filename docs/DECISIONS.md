@@ -115,3 +115,65 @@ This document records key design decisions, rationale, and alternatives consider
 - **Alternatives**: Delaying the tests, ignoring stderr, or weakening their assertions
   was rejected. Explicit lifecycle ownership fixes the underlying initialization order.
   Algorithms, topics, frozen simulator values, and acceptance tools remain unchanged.
+
+### DECISION-008: Physical footprint clearance and repeated shutdown signals
+
+- **Date**: 2026-10-29
+- **Evidence**: The first autonomous VRX seed-1 run collected 12/12 at 90.8 simulated
+  seconds with one bank contact. CSV first records that contact at y=-2.789 m while
+  APPROACH turns the finite-size catamaran; its rotated hull/deck can extend about
+  1.21 m laterally, unlike the reference simulator's point/unicycle footprint.
+  Recorded and inspected brain states, rendered debug images and an eight-topic
+  14.24 s rosbag (1960 messages); the bag stays in ignored log storage.
+- **Decision**: Override only the VRX brain's existing `bank_margin` parameter to
+  1.4 m (enter avoidance at |y|>2.6), keeping speeds, geometry, scoop and all reference
+  defaults unchanged. This changes the algorithm's clearance, not the environment
+  or collision scorer. Verify all seeds again; no contact counter filtering.
+- **Shutdown evidence**: The mission monitor's process-group SIGINT reached children
+  directly and launch forwarded another SIGINT during node destruction, yielding
+  real KeyboardInterrupt tracebacks. The monitor now signals launch once, leaving
+  forwarding to launch, with process-group termination only as failure fallback.
+  All node main functions ignore further SIGINT/SIGTERM only after entering their
+  `finally` cleanup, allowing orderly teardown and metrics flush to finish. No
+  simulator class or decision class is altered. Add repeated-signal regression.
+- **Metrics precision**: Existing logger CSV path is rounded to 1 mm, summary path
+  to 1 cm. The new provenance checker permits the combined 0.006 m rounding bound;
+  this is not a mission/path performance threshold. Counts and bank hits stay exact.
+
+### DECISION-009: Camera-derived safe approach waypoints for the physical hull
+
+- **Evidence**: VRX-only margin 1.4 still failed: seed 1 reached four contact
+  transitions at 39.615 s, collected 4/12. Shutdown was now clean, with no runtime
+  errors. CSV shows AVOID_BANK entered, but momentum and rotation carried the
+  centre to |y|=2.838 m; the finite hull then contacted the bank while turning.
+  Increasing a trigger margin alone does not solve the approach geometry.
+- **Decision**: Add a pure marine approach adapter around the unchanged reference
+  decision class. From camera detections and boat pose, compute a waypoint alongside
+  shoreline trash, clamped to a safe boat-centre corridor. Approach that waypoint,
+  brake, then turn in place toward the actual detected trash. Collection eligibility
+  is still checked against the actual image-derived detection by the reference
+  logic; the waypoint can never trigger collection. Preserve all state names,
+  original cooldown, speed limits, scoop bounds and priorities. No ground-truth
+  trash input and no seed-specific tuning.
+- **Defaults**: shore clearance 1.8 m (safe centre |y|<=2.2), end clearance 1.4 m,
+  waypoint arrival 0.25 m, in-place alignment within 1.1 m of actual trash. These
+  are declared ROS parameters in the separate marine wrapper. Original backend
+  keeps its original node, class and parameters.
+
+### DECISION-010: Controlled final docking and retreat
+
+- The first waypoint implementation prevented collisions but stalled on a physical
+  item pushed toward the bank: live image-derived target [-0.180,-1.323] m while
+  the boat stayed near y=-2.37. A fixed stand-off waypoint cannot put all shoreline
+  objects within the unchanged collection trigger. Stopped this diagnostic trial
+  after about 140 s rather than claiming success or waiting to exhaust its deadline.
+- Keep safe staging, then latch a docking phase: align in place at safe clearance,
+  creep forward at 0.3 m/s only while the real target bearing is within 0.15 rad,
+  collect using the unchanged reference trigger, hold its cooldown, and reverse at
+  0.3 m/s into the safe corridor before turning again. Hard docking clearance is
+  1.1 m from banks/end walls. This accounts for physical displacement of floating
+  objects rather than artificially clamping them or enlarging the scoop.
+- Restore the reference 0.8 bank margin in the VRX fallback; the staged docking
+  corridor handles normal collision avoidance. The old 1.4 override conflicted
+  with the controlled close approach. All changes are to camera-derived planning;
+  scorer, physics, distribution, currents, speeds' upper bounds and tests remain.

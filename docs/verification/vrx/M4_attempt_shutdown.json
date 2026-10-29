@@ -1,0 +1,55 @@
+{
+  "backend": "vrx",
+  "seed": 1,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=1",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m4_seed1"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 1,
+  "sim_seconds": 90.8,
+  "images": 908,
+  "detection_frames": 908,
+  "nonempty_detections": 667,
+  "commands": 1815,
+  "thruster_messages": 1815,
+  "poses": 1674,
+  "states": {
+    "SEARCH": 450,
+    "APPROACH": 1254,
+    "COLLECT": 111
+  },
+  "last_pose": [
+    57.727066379012555,
+    -1.5001472495729817
+  ],
+  "wall_seconds": 93.58,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 90.8,
+    "items_per_min": 7.93,
+    "path_length_m": 64.15,
+    "bank_hits": 1
+  },
+  "runtime_errors": [
+    "[metrics_logger-6] Traceback (most recent call last):",
+    "[water_detector-3] Traceback (most recent call last):",
+    "[thruster_controller-4] Traceback (most recent call last):",
+    "[ERROR] [thruster_controller-4]: process has died [pid 132175, exit code -2, cmd '/home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/lib/trash_boat_vrx/thruster_controller --ros-args -r __node:=thruster_controller --params-file /home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/share/trash_boat_vrx/config/params.yaml'].",
+    "[ERROR] [metrics_logger-6]: process has died [pid 132177, exit code -2, cmd '/home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_control/lib/trash_boat_control/metrics_logger --ros-args -r __node:=metrics_logger --params-file /home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_bringup/share/trash_boat_bringup/config/params.yaml --params-file /tmp/launch_params_7n9x0rto'].",
+    "[ERROR] [water_detector-3]: process has died [pid 132174, exit code -2, cmd '/home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/lib/trash_boat_vrx/water_detector --ros-args -r __node:=water_detector --params-file /home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/share/trash_boat_vrx/config/params.yaml']."
+  ],
+  "passed": false,
+  "error": null
+}

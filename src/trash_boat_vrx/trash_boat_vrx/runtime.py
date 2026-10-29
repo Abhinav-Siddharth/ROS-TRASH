@@ -38,6 +38,9 @@ def run_node(node_type: Type[Node], args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
+        # Launch may forward a second interrupt after a terminal/group signal.
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
         executor.shutdown()
         if node is not None:
             node.destroy_node()
