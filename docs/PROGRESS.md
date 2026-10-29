@@ -465,3 +465,29 @@ This log records progress and verification output milestone-by-milestone.
 - Evidence: `docs/verification/vrx/M4_*`. Failed attempts remain explicitly marked.
   Protected tools and SPEC section 7 were not edited; no frozen environment settings
   or collection bounds were changed.
+
+### VRX M5: seeded and disturbance evidence gate PASSED
+
+- Seven real missions passed: nominal seeds 1/2/3 at current 0.05, plus seed-1
+  zero/0.15 currents, 0.05 m waves, and seed-3 0.10 m waves. Every case collected
+  12/12, stopped cleanly, had no runtime errors, and matched final CSV/summary counts,
+  contacts and rounded path/duration. Nominal seed 2 had three actual end-bank contact
+  transitions; all other runs had zero. This limitation is visible in RESULTS_VRX.md.
+- Completion times (sim s): nominal 154.605 / 104.580 / 89.760; zero current 157.160;
+  strong current 131.790; 0.05 m waves 154.760; 0.10 m waves 89.760. No deadlines,
+  collision counter filtering, scoop bounds, frozen settings or assertions changed.
+- Runtime commit bbbae5f, official VRX source 03eae362. Verified the exact source-tree
+  hash stayed unchanged throughout all trials:
+  `a42d31cbf6671a240f6a5f896ee7f8ab1f4bd6c9d1a40eb68d607a599cf95708`.
+- Archived verbatim acceptance JSON, metrics.csv and summary.json for each case in
+  `docs/results/vrx/`; combined report includes source provenance and exact commands.
+  Reproducer: `docs/run_vrx_experiments.py`; graph script reads the actual measurements.
+  `docs/img/vrx_results.png` was visually inspected. Full CSV paths and timestamps are
+  measured data, not fabricated examples or hardcoded controller inputs.
+- Independently ran a stationary physical boat with wave amplitude 0.10 for 12 sim s:
+  188 samples after startup; z ranged 0.0274691–0.2248299 m, quaternion roll/pitch
+  components varied. This proves waves affect physics, beyond merely setting SDF
+  values. Water rendering remains a flat visual plane and is documented as such.
+- Required pre-commit build/test/result gate:
+  `Summary: 74 tests, 0 errors, 0 failures, 0 skipped`.
+- No runtime source changed during M5. Original reference results remain separate.
