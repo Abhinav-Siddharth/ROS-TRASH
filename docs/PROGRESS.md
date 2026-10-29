@@ -318,3 +318,23 @@ This log records progress and verification output milestone-by-milestone.
 
 
 
+
+### VRX M0: dependency and baseline gate PASSED (2026-10-29)
+
+- Human approved the M0–M6 extension and pinned official VRX downloads. Contract:
+  `docs/VRX_SPEC.md`; authorization and exceptions: DECISION-007.
+- `git clone --depth 1 --branch v3.1.0 https://github.com/osrf/vrx.git external/vrx`.
+  Annotated tag object `185fd8b...` resolves to source commit `03eae362...`; the
+  manifest and bootstrap check pin the resolved source commit.
+- `PYTHONNOUSERSITE=1 ROS_LOG_DIR=/tmp/trash_boat_roslogs bash scripts/bootstrap_vrx.sh`:
+  `Pinned VRX source verified.` An initial `set -u` exposed an unset variable inside
+  ROS setup; the script now disables nounset only while sourcing ROS, then restores it.
+- `colcon build --symlink-install --parallel-workers 2 --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo`
+  with system Python and `CMAKE_BUILD_PARALLEL_LEVEL=2`:
+  `Summary: 9 packages finished [48.7s]`. Actual upstream Surface,
+  SimpleHydrodynamics, Waves and other VRX shared libraries built successfully.
+- Sourced `install/setup.bash`; `colcon test --event-handlers console_cohesion+ &&
+  colcon test-result --verbose` in isolated domain 81 with approved local DDS:
+  `Summary: 37 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M0_build.txt`, `M0_test.txt`. No system installs,
+  no protected tool changes, no algorithm/default changes.

@@ -1,0 +1,5 @@
+repositories:
+  external/vrx:
+    type: git
+    url: https://github.com/osrf/vrx.git
+    version: 03eae362bb544f630595acd53b931e4a7060dffd

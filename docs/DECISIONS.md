@@ -2,6 +2,35 @@
 
 This document records key design decisions, rationale, and alternatives considered during the development of `trash_boat`.
 
+### DECISION-007: Approved VRX simulation extension
+
+- **Date**: 2026-10-29
+- **Authorization**: The human requested "Implement everything you think is required.
+  I should receive the simulation ready" after the VRX recommendation, then explicitly
+  answered "Approve plan and VRX downloads" to the M0–M6 plan and dependency exception.
+- **What**: Add a separate Gazebo Harmonic / ROS 2 Jazzy backend using official VRX
+  v3.1.0, pinned to commit `03eae362bb544f630595acd53b931e4a7060dffd`.
+  Permit its official source and bundled asset download inside ignored `external/`.
+  Add one integration package, including a C++ Gazebo scoring plugin, Python world
+  generator, sensor projection, thruster controller, launch/configuration and tests.
+  C++ is necessary for direct Gazebo entity/physics access; existing packages remain
+  Python. New simulator transport and ROS interfaces are listed in `VRX_SPEC.md`.
+- **Why**: The new user instruction expands the original pure-Python scope. A compact
+  custom catamaran fits the frozen 8 m canal better than the larger stock WAM-V.
+  Use upstream VRX buoyancy/hydrodynamics rather than describing a kinematic model
+  as a physics simulation. Use locally generated primitive geometry, with no Fuel
+  model fetches or downloaded perception models.
+- **Preserved**: Original verification tools, acceptance thresholds, simulator class,
+  controller state machine, default speeds, seeds, trash count, and canal size.
+  No trash ground truth enters perception or control. Existing results apply only
+  to the original backend until separate VRX trials establish measured results.
+- **Alternatives**: Stonefish was considered but VRX directly targets surface craft
+  and explicitly supports this installed ROS/Gazebo combination. Replacing the
+  original simulator would lose the fast verified regression baseline.
+- **Gates**: Follow `docs/VRX_SPEC.md` M0–M6 in order; record actual commands and
+  failures in `PROGRESS.md`. System dependencies remain limited to declared rosdep
+  dependencies; no pip, sudo, or other global changes are authorized.
+
 ---
 
 ### DECISION-001: Creation of `tools/verify.sh` and implementation of `canal_sim.py`

@@ -21,6 +21,9 @@ log_mission_*.txt
 *.bag/
 rosbag2_*
 
+# Version-pinned upstream VRX checkout (see dependencies.repos)
+external/
+
 # IDEs
 .vscode/
 .idea/

@@ -16,6 +16,12 @@ Scope: ROS 2 Jazzy, pure simulation (no Gazebo, no hardware), Python.
 Non-goals (do NOT build these): Gazebo/VRX integration, YOLO/ML detection, Nav2, custom
 message packages, multi-boat, real hardware drivers.
 
+**Approved extension (2026-10-29):** The human requested a ready-to-run VRX simulation
+and approved its M0–M6 plan and official pinned source/assets downloads. The additional
+contract in `docs/VRX_SPEC.md` supersedes the Gazebo/VRX exclusion for that backend only.
+The original backend, defaults, interfaces, section 7 thresholds, and protected tools
+remain unchanged. See DECISION-007 for the explicit scope and dependency exceptions.
+
 ## 2. Environment and constraints
 
 | Item | Value |
