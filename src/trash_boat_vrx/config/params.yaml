@@ -1,0 +1,26 @@
+water_detector:
+  ros__parameters:
+    use_sim_time: true
+    hsv_lower: [5, 150, 120]
+    hsv_upper: [25, 255, 255]
+    min_area: 20.0
+    max_area: 800.0
+    camera_height: 6.0
+    water_z: 0.0
+    max_range: 12.0
+    pose_timeout: 0.5
+    pose_history_size: 100
+thruster_controller:
+  ros__parameters:
+    use_sim_time: true
+    control_rate: 20.0
+    arm: 0.65
+    max_thrust: 50.0
+    max_speed: 0.8
+    max_yaw_rate: 1.2
+    surge_drag: 20.0
+    yaw_drag: 10.0
+    surge_gain: 70.0
+    yaw_gain: 50.0
+    command_timeout: 0.5
+    odometry_timeout: 0.5

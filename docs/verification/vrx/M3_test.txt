@@ -1,0 +1,205 @@
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.49s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.48s]
+Finished <<< wamv_description [0.01s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.02s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.02s]
+--- output: trash_boat_perception
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_perception/.pytest_cache
+rootdir: /home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_perception
+plugins: launch-testing-ros-0.26.12, ament-flake8-0.17.5, ament-copyright-0.17.5, launch-testing-3.4.11, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-lint-0.17.5, colcon-core-0.21.3, cov-4.1.0, typeguard-4.1.5
+collected 8 items
+
+test/test_copyright.py .                                                 [ 12%]
+test/test_detector_core.py .....                                         [ 75%]
+test/test_flake8.py .                                                    [ 87%]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130569) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test/test_pep257.py .                                                    [100%]
+- generated xml file: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_perception/pytest.xml -
+======================== 8 passed, 24 warnings in 0.61s ========================
+---
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130569) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.24s]
+--- output: trash_boat_sim
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_sim/.pytest_cache
+rootdir: /home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_sim
+plugins: launch-testing-ros-0.26.12, ament-flake8-0.17.5, ament-copyright-0.17.5, launch-testing-3.4.11, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-lint-0.17.5, colcon-core-0.21.3, cov-4.1.0, typeguard-4.1.5
+collected 7 items
+
+test/test_canal_sim.py ....                                              [ 57%]
+test/test_copyright.py .                                                 [ 71%]
+test/test_flake8.py .                                                    [ 85%]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130571) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test/test_pep257.py .                                                    [100%]
+- generated xml file: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_sim/pytest.xml -
+======================== 7 passed, 24 warnings in 0.91s ========================
+---
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130571) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.82s]
+--- output: trash_boat_control
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_control/.pytest_cache
+rootdir: /home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_control
+plugins: launch-testing-ros-0.26.12, ament-flake8-0.17.5, ament-copyright-0.17.5, launch-testing-3.4.11, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-lint-0.17.5, colcon-core-0.21.3, cov-4.1.0, typeguard-4.1.5
+collected 16 items
+
+test/test_copyright.py .                                                 [  6%]
+test/test_flake8.py .                                                    [ 12%]
+test/test_logic.py .........                                             [ 68%]
+test/test_metrics_logger.py ....                                         [ 93%]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130567) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test/test_pep257.py .                                                    [100%]
+- generated xml file: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_control/pytest.xml -
+======================= 16 passed, 24 warnings in 1.65s ========================
+---
+--- stderr: trash_boat_control
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=130567) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_control [2.24s]
+Starting >>> trash_boat_bringup
+--- output: trash_boat_bringup
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_bringup/.pytest_cache
+rootdir: /home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_bringup
+plugins: launch-testing-ros-0.26.12, ament-flake8-0.17.5, ament-copyright-0.17.5, launch-testing-3.4.11, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-lint-0.17.5, colcon-core-0.21.3, cov-4.1.0, typeguard-4.1.5
+collected 6 items
+
+test/test_copyright.py .                                                 [ 16%]
+test/test_flake8.py .                                                    [ 33%]
+test/test_params_consistency.py ...                                      [ 83%]
+test/test_pep257.py .                                                    [100%]
+
+- generated xml file: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_bringup/pytest.xml -
+============================== 6 passed in 0.47s ===============================
+---
+Finished <<< trash_boat_bringup [0.97s]
+Starting >>> trash_boat_vrx
+--- output: trash_boat_vrx
+UpdateCTestConfiguration  from :/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/CTestConfiguration.ini
+Parse Config file:/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/CTestConfiguration.ini
+   Site: pop-os
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20261029-1752 - Experimental
+UpdateCTestConfiguration  from :/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/CTestConfiguration.ini
+Parse Config file:/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/CTestConfiguration.ini
+Test project /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_intake
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_intake.gtest.xml" "--package-name" "trash_boat_vrx" "--output-file" "/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/ament_cmake_gtest/test_intake.txt" "--command" "/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_intake" "--gtest_output=xml:/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_intake.gtest.xml"
+1: Working Directory: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx':
+1:  - /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_intake --gtest_output=xml:/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_intake.gtest.xml
+1: Running main() from /opt/ros/jazzy/src/gtest_vendor/src/gtest_main.cc
+1: [==========] Running 2 tests from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 2 tests from Intake
+1: [ RUN      ] Intake.FrozenBounds
+1: [       OK ] Intake.FrozenBounds (0 ms)
+1: [ RUN      ] Intake.RotationAndTranslation
+1: [       OK ] Intake.RotationAndTranslation (0 ms)
+1: [----------] 2 tests from Intake (0 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 2 tests from 1 test suite ran. (0 ms total)
+1: [  PASSED  ] 2 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_intake.gtest.xml'
+1: -- run_test.py: verify result file '/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_intake.gtest.xml'
+1/2 Test #1: test_intake ......................   Passed    0.07 sec
+test 2
+    Start 2: test_python
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_python.xunit.xml" "--package-name" "trash_boat_vrx" "--output-file" "/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/ament_cmake_pytest/test_python.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_vrx/test" "-o" "cache_dir=/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/ament_cmake_pytest/test_python/.cache" "--junit-xml=/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_python.xunit.xml" "--junit-prefix=trash_boat_vrx"
+2: Working Directory: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx
+2: Test timeout computed to be: 90
+2: -- run_test.py: invoking following command in '/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx':
+2:  - /usr/bin/python3 -u -m pytest /home/abhi_pop/Desktop/ros-projects/ros-projects/src/trash_boat_vrx/test -o cache_dir=/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/ament_cmake_pytest/test_python/.cache --junit-xml=/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_python.xunit.xml --junit-prefix=trash_boat_vrx
+2: ============================= test session starts ==============================
+2: platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+2: cachedir: build/trash_boat_vrx/ament_cmake_pytest/test_python/.cache
+2: rootdir: /home/abhi_pop/Desktop/ros-projects/ros-projects
+2: plugins: launch-testing-ros-0.26.12, ament-flake8-0.17.5, ament-copyright-0.17.5, launch-testing-3.4.11, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-lint-0.17.5, colcon-core-0.21.3, cov-4.1.0, typeguard-4.1.5
+2: collected 25 items
+2: 
+2: ../../src/trash_boat_vrx/test/test_copyright.py .                        [  4%]
+2: ../../src/trash_boat_vrx/test/test_flake8.py .                           [  8%]
+2: ../../src/trash_boat_vrx/test/test_pep257.py .                           [ 12%]
+2: ../../src/trash_boat_vrx/test/test_projection.py ......                  [ 36%]
+2: ../../src/trash_boat_vrx/test/test_thruster.py .........                 [ 72%]
+2: ../../src/trash_boat_vrx/test/test_world.py .......                      [100%]
+2: 
+2: - generated xml file: /home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_python.xunit.xml -
+2: ============================== 25 passed in 0.84s ==============================
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/home/abhi_pop/Desktop/ros-projects/ros-projects/build/trash_boat_vrx/test_results/trash_boat_vrx/test_python.xunit.xml'
+2/2 Test #2: test_python ......................   Passed    1.20 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Label Time Summary:
+gtest     =   0.07 sec*proc (1 test)
+pytest    =   1.20 sec*proc (1 test)
+
+Total Test time (real) =   1.28 sec
+---
+Finished <<< trash_boat_vrx [1.32s]
+
+Summary: 10 packages finished [4.66s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim
+Summary: 66 tests, 0 errors, 0 failures, 0 skipped

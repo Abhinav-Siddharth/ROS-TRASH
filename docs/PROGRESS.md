@@ -401,3 +401,28 @@ This log records progress and verification output milestone-by-milestone.
   `Summary: 57 tests, 0 errors, 0 failures, 0 skipped`.
 - Evidence: `docs/verification/vrx/M2_{build,test,probe}.txt`. Both real node processes
   stopped cleanly. The reference detector and controller modules remain unchanged.
+
+### VRX M3: physical thruster control gate PASSED
+
+- Added pure surge/yaw feedback, differential force mixing with ratio-preserving
+  saturation, independent command/odometry freshness checks, and a thin ROS wrapper.
+  SDF and YAML arm/force/watchdog values are cross-checked by a real test.
+- Actual headless world + actual thruster_controller, commanded only through
+  `/cmd_vel`; measured Gazebo odometry and force topics:
+  ```text
+  forward: v=0.79999998 m/s, x=6.51460405 m, left=right=8.00000086 N
+  braking: v=0.00013035 m/s after 3 s of zero command
+  turning: w=1.19999910 rad/s, left=-9.23080638 N, right=9.23082120 N
+  turn stop: w=-0.00001937 rad/s after 3 s of zero command
+  stale command: left=right=0.0 N
+  ```
+  Motion came from forces on a rigid body, not commanded poses/velocities. A stale
+  command cuts thrust; the boat then coasts under physical drag, as expected.
+- Initial probe aborted because its test Twist assigned integers to floating-point
+  fields, triggering ROS serialization's type assertion. Stopped its two identified
+  child process groups, corrected test message types, reran the full motion check.
+  No production assertion, algorithm or test threshold was weakened.
+- Final pre-commit build/test/result gate:
+  `Summary: 66 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M3_{build,test,probe}.txt`. Reference decision logic
+  and speed defaults unchanged. No trash status/positions enter thruster control.
