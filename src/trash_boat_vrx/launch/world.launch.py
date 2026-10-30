@@ -18,12 +18,14 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import sys
 import tempfile
 
 from ament_index_python.packages import get_package_prefix, get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, EmitEvent, ExecuteProcess, LogInfo,
                             OpaqueFunction, RegisterEventHandler)
+from launch.conditions import UnlessCondition
 from launch.event_handlers import OnProcessExit, OnShutdown
 from launch.events import Shutdown
 from launch.substitutions import LaunchConfiguration
@@ -57,6 +59,9 @@ def start_world(context) -> list:
     simulator = ExecuteProcess(cmd=args, output='screen', sigterm_timeout='10',
                                additional_env={**transport,
                                                'GZ_SIM_SYSTEM_PLUGIN_PATH': ':'.join(paths)})
+    follow = ExecuteProcess(
+        cmd=[sys.executable, '-m', 'trash_boat_vrx.gui_follow'], output='screen',
+        condition=UnlessCondition(LaunchConfiguration('headless')), additional_env=transport)
     share = get_package_share_directory('trash_boat_vrx')
     bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
                   name='vrx_bridge', output='screen', parameters=[{
@@ -69,13 +74,19 @@ def start_world(context) -> list:
             shutil.rmtree(directory)
         return []
 
+    def follow_exit(event, _context) -> list:
+        if event.returncode != 0:
+            return [EmitEvent(event=Shutdown(reason='GUI follow initialization failed'))]
+        return []
+
     return [LogInfo(msg=f'Generated VRX canal: {world_path}'),
             RegisterEventHandler(OnShutdown(on_shutdown=cleanup)),
             RegisterEventHandler(OnProcessExit(target_action=simulator,
                                  on_exit=[EmitEvent(event=Shutdown(reason='Gazebo exited'))])),
             RegisterEventHandler(OnProcessExit(target_action=bridge,
                                  on_exit=[EmitEvent(event=Shutdown(reason='Bridge exited'))])),
-            simulator, bridge]
+            RegisterEventHandler(OnProcessExit(target_action=follow, on_exit=follow_exit)),
+            simulator, bridge, follow]
 
 
 def generate_launch_description() -> LaunchDescription:

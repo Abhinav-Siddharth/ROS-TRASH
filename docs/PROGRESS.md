@@ -491,3 +491,44 @@ This log records progress and verification output milestone-by-milestone.
 - Required pre-commit build/test/result gate:
   `Summary: 74 tests, 0 errors, 0 failures, 0 skipped`.
 - No runtime source changed during M5. Original reference results remain separate.
+
+### VRX M6: delivery candidate; hosted CI pending
+
+- Added `scripts/run_vrx.sh` (one-command GUI/headless launch),
+  `scripts/verify_vrx.sh` (full build/tests plus real VRX seeds 1/2/3), and the
+  setup, architecture, controller explanation and viva guide in VRX_GUIDE.md.
+  Updated CI to fetch the official pinned release, install declared rosdep
+  dependencies and run both independent backend gates with software rendering.
+- Original protected `./tools/verify.sh` exited 0: all 74 tests passed, all original
+  seed 1/2/3 missions collected 12/12 with zero bank hits. Actual final output:
+  ```text
+  PASSED: SEED=3 acceptance check passed
+  ==========================================
+  All acceptance checks PASSED successfully!
+  ==========================================
+  ```
+  Full stdout: `docs/verification/vrx/M6_reference_verify.txt`.
+- Fresh local source checkout, clean ten-package build, distribution libraries and
+  software Mesa rendering passed all 74 tests and real physical seed 3: 12/12,
+  zero contacts, clean shutdown, no runtime errors. This snapshot preceded the
+  final GUI-only follow helper; physics/autonomy were identical. Evidence:
+  `M6_clean_software_verify.txt` and `M6_clean_seed3.json`. Hosted CI checks the
+  final committed source from a fresh checkout.
+- Real graphical seed 42: 12/12, zero contacts, 95.885 simulated seconds,
+  clean shutdown and no errors (`M6_gui_seed42.json`). A separate GUI probe found
+  the SDF follow target did not activate follow mode; the GUI-only helper fixes
+  this via Gazebo's service. Initial probes and their failures remain recorded.
+- Final unchanged CLI follow assertion PASSED: 100 real camera poses within the
+  original 45-second deadline (2.180 s measured), with 1.074 m motion, exceeding
+  the original 0.02 m bound. Native topic frequency was live ~40–50 Hz.
+  Screenshot `docs/img/vrx_3d_scene.png` shows the actual follow view, visually
+  inspected. The complete demo process tree stopped cleanly.
+- An initial sandbox test invocation omitted ROS_LOG_DIR and failed on read-only
+  ~/.ros/log (8 errors / 4 failures). Repeated the required gate with the documented
+  writable log path and local DDS permissions; no code or assertion was weakened.
+- `bash -n` passed for all three launch/bootstrap/verification scripts;
+  `git diff --check` passed. Protected verification tools are unchanged.
+- Final pre-commit gate: `Summary: 74 tests, 0 errors, 0 failures, 0 skipped`.
+  Evidence: `M6_build.txt`, `M6_test.txt`, `M6_test_result.txt`.
+- Hosted CI status will be recorded after publication; M6 is not declared complete
+  until that run is green.

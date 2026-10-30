@@ -224,6 +224,7 @@ def make_world(config: WorldConfig) -> str:
     child(scene, 'ambient', '0.65 0.65 0.65 1')
     child(scene, 'background', '0.55 0.75 0.92 1')
     child(scene, 'shadows', 'false')
+    child(scene, 'grid', 'false')
     light = child(world, 'light', name='sun', type='directional')
     child(light, 'pose', '0 0 10 0 0 0')
     child(light, 'diffuse', '0.8 0.8 0.8 1')
@@ -238,8 +239,12 @@ def make_world(config: WorldConfig) -> str:
     for filename, name in [('GzSceneManager', 'Scene Manager'),
                            ('InteractiveViewControl', 'View Control'),
                            ('CameraTracking', 'Camera Tracking'),
-                           ('WorldControl', 'World Control'), ('WorldStats', 'Statistics')]:
-        plugin(gui, filename, name)
+                           ('WorldControl', 'World Control'), ('WorldStats', 'Statistics'),
+                           ('Screenshot', 'Screenshot')]:
+        element = plugin(gui, filename, name)
+        if filename == 'CameraTracking':
+            child(element, 'follow_target', 'trash_boat')
+            child(element, 'follow_offset', '-5 -7 5')
     image_view = plugin(gui, 'ImageDisplay', 'Boat camera', topic='/vrx/camera')
     props = child(image_view, 'gz-gui')
     child(props, 'property', 'docked', key='state', type='string')

@@ -177,3 +177,30 @@ This document records key design decisions, rationale, and alternatives consider
   corridor handles normal collision avoidance. The old 1.4 override conflicted
   with the controlled close approach. All changes are to camera-derived planning;
   scorer, physics, distribution, currents, speeds' upper bounds and tests remain.
+
+### DECISION-011: Explicit GUI follow activation and retained verification
+
+- Real GUI seed 42 collected 12/12 with zero contacts and no runtime errors, but
+  a separate follow-camera check failed. Gazebo's actual pose topic showed a static
+  camera at [8,-12,11]; its source initializes tracking mode NONE even when SDF
+  specifies a follow target. Added a GUI-only startup helper using the official
+  `/gui/follow` service, with a readiness deadline and failure propagation.
+- Direct Python Gazebo subscription also received no callbacks while the official
+  CLI received real pose messages. Validate 100 real CLI pose messages and the same
+  >0.02 m movement condition; retain failed probes and screenshots as diagnostics.
+- Automatic approval review rejected a proposed probe revision that removed failed
+  assertions. That action did not execute. Retained the assertions and captured a
+  diagnostic scene before them; the unchanged check still failed on the real static
+  view. Fix the product and use the supported CLI to meet the original check.
+- A normal Gazebo Screenshot GUI plugin saves simulation-scene images for visual
+  QA; no desktop screenshots or unrelated app data are captured. Disable the scene
+  grid for the presentation view. These GUI-only changes do not alter physics or
+  autonomy, and headless runs do not start the GUI helper.
+
+- Final configured GUI recheck retained both assertions and PASSED: 100 real pose
+  messages in 2.180 s, camera x moved from 32.8704 to 33.9446 m. The earlier
+  45-second timeout is retained in M6_gui_previous_failure.txt; it did not recur
+  with explicit matching partition and sourced Jazzy/workspace environment.
+  Native frequency inspection also showed live 40–50 Hz pose traffic. No sampling
+  count, deadline, movement bound or production acceptance threshold was reduced.
+  The final scene screenshot was captured from the moving follow view and inspected.

@@ -19,6 +19,9 @@ jobs:
       ROS_DOMAIN_ID: '73'
       ROS_AUTOMATIC_DISCOVERY_RANGE: LOCALHOST
       ROS_LOG_DIR: /tmp/trash_boat_roslogs
+      GZ_IP: '127.0.0.1'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      CMAKE_BUILD_PARALLEL_LEVEL: '2'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -28,17 +31,25 @@ jobs:
         with:
           required-ros-distributions: jazzy
 
+      - name: Fetch official pinned VRX dependency
+        run: ./scripts/bootstrap_vrx.sh
+
       - name: Install declared dependencies
         run: |
           source /opt/ros/jazzy/setup.bash
           rosdep update
-          rosdep install --from-paths src --ignore-src -y
+          rosdep install --from-paths src external/vrx --ignore-src -y --rosdistro jazzy
 
       - name: Build, test, and run all three acceptance missions
         shell: bash
         run: |
           source /opt/ros/jazzy/setup.bash
           ./tools/verify.sh | tee verification_output.txt
+
+      - name: Run all three physical VRX acceptance missions
+        shell: bash
+        run: |
+          ./scripts/verify_vrx.sh | tee vrx_verification_output.txt
 
       - name: Preserve verification evidence
         if: always()
@@ -48,6 +59,8 @@ jobs:
           if-no-files-found: warn
           path: |
             verification_output.txt
+            vrx_verification_output.txt
+            log/vrx_verify_*/
             log_mission_*.txt
             /tmp/trash_boat_roslogs/
             ~/trash_boat_metrics/

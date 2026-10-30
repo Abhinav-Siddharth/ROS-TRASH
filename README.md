@@ -5,22 +5,54 @@ Built as a **ROS 2 Jazzy course project** using Python, OpenCV, and standard ROS
 
 [![CI](https://github.com/Abhinav-Siddharth/ROS-TRASH/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhinav-Siddharth/ROS-TRASH/actions/workflows/ci.yml)
 
-**Measured:** all nine seed/current experiments collected **12/12 items with zero bank
-hits**. All items were first recorded collected in **80.5–87.0 seconds**. See the
-[results and trajectories](docs/RESULTS.md) and [raw numeric evidence](docs/results/experiments.json).
+## Start the 3D VRX simulation
 
-![Real detector output: orange trash circled in green, boat in white](docs/img/mission_debug.png)
+The new physical backend uses **Gazebo Harmonic + official VRX v3.1.0 + ROS 2 Jazzy**.
+It includes a floating twin-thruster boat, rendered camera, canal and trash, visible
+scoop, camera-only autonomy, physical bank contacts, metrics and independent acceptance.
 
-## Build and run
+On this prepared workspace:
+
+```bash
+./scripts/run_vrx.sh
+```
+
+The 3D camera follows the boat; a second panel displays its real camera feed.
+Close Gazebo or press Ctrl-C to stop and write the summary. Each launch preserves
+metrics in a new `log/vrx_demo_*` directory. Headless example:
+
+```bash
+./scripts/run_vrx.sh headless:=true seed:=1 wave_amplitude:=0.05
+```
+
+**Measured VRX results:** all seven nominal/current/wave trials collected **12/12**.
+Six had zero bank contacts; nominal seed 2 had three, within the acceptance limit.
+Read the [setup and demo guide](docs/VRX_GUIDE.md),
+[actual VRX results](docs/RESULTS_VRX.md), and [raw trial evidence](docs/results/vrx/experiments.json).
+
+![Actual Gazebo follow-camera scene](docs/img/vrx_3d_scene.png)
+
+![Measured VRX results](docs/img/vrx_results.png)
+
+The original Python simulator remains available as a fast regression baseline.
+Its nine experiments collected 12/12 with zero bank hits in 80.5–87.0 seconds;
+those are [reference-backend results](docs/RESULTS.md), separate from VRX measurements.
+
+## Build and run the reference backend
 
 Use Ubuntu 24.04, ROS 2 Jazzy at `/opt/ros/jazzy`, and system Python 3.12.
 The local verification environment is Pop!_OS 24.04 with those Jazzy/system packages.
-No Gazebo, learned models, hardware, or virtual environment is required.
+The reference backend requires no renderer. The complete workspace now includes the
+VRX extension, so fetch its pinned dependency before a full build. Neither backend
+uses learned models, hardware drivers, or a Python virtual environment.
 
 Start in the repository root. In a new checkout, `git clone` this repository and
 `cd ROS-TRASH` first.
 
 ```bash
+# Fetch the official pinned source once (no global changes).
+./scripts/bootstrap_vrx.sh
+
 # Use the distribution libraries expected by cv_bridge.
 export PYTHONNOUSERSITE=1
 source /opt/ros/jazzy/setup.bash
@@ -46,7 +78,7 @@ On a prepared ROS/Jazzy machine with rosdep initialized, install declared depend
 before building:
 
 ```bash
-rosdep install --from-paths src --ignore-src -y
+rosdep install --from-paths src external/vrx --ignore-src -y --rosdistro jazzy
 ```
 
 The manifests declare ROS interfaces, `cv_bridge`, OpenCV, NumPy, launch support,
