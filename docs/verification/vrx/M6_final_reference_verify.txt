@@ -1,0 +1,97 @@
+==========================================
+1. Building workspace
+==========================================
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.59s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.59s]
+Finished <<< wamv_description [0.09s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.07s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.40s]
+Finished <<< trash_boat_sim [1.62s]
+Finished <<< trash_boat_perception [1.65s]
+Finished <<< trash_boat_control [1.67s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.35s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [0.42s]
+
+Summary: 10 packages finished [3.59s]
+==========================================
+2. Running unit and lint tests
+==========================================
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.53s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.53s]
+Finished <<< wamv_description [0.01s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.02s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.02s]
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=193921) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.33s]
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=193923) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.91s]
+--- stderr: trash_boat_control
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=193919) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_control [2.37s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [0.97s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [2.70s]
+
+Summary: 10 packages finished [6.19s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim
+Summary: 82 tests, 0 errors, 0 failures, 0 skipped
+==========================================
+3. Running integration acceptance tests
+==========================================
+------------------------------------------
+Running acceptance check for SEED=1...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.8}
+PASSED: SEED=1 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=2...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.3}
+PASSED: SEED=2 acceptance check passed
+------------------------------------------
+Running acceptance check for SEED=3...
+------------------------------------------
+{"passed": true, "received_sim_data": true, "collected": 12, "total": 12, "ratio": 1.0, "bank_hits": 0, "wall_seconds": 84.5}
+PASSED: SEED=3 acceptance check passed
+==========================================
+All acceptance checks PASSED successfully!
+==========================================

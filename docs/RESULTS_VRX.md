@@ -1,4 +1,6 @@
-# Measured VRX results
+# Measured VRX results (historical M5)
+
+The latest controller is verified in [final VRX results](RESULTS_VRX_FINAL.md).
 
 These are real Gazebo Harmonic / VRX missions, separate from the reference
 simulator results in RESULTS.md. Images were rendered by Gazebo; the actual

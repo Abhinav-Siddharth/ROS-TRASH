@@ -26,13 +26,13 @@ metrics in a new `log/vrx_demo_*` directory. Headless example:
 ```
 
 **Measured VRX results:** all seven nominal/current/wave trials collected **12/12**.
-Six had zero bank contacts; nominal seed 2 had three, within the acceptance limit.
+Six had zero bank contacts; nominal seed 2 had two in the final matrix, within the acceptance limit.
 Read the [setup and demo guide](docs/VRX_GUIDE.md),
-[actual VRX results](docs/RESULTS_VRX.md), and [raw trial evidence](docs/results/vrx/experiments.json).
+[actual VRX results](docs/RESULTS_VRX_FINAL.md), and [raw trial evidence](docs/results/vrx_final/experiments.json).
 
 ![Actual Gazebo follow-camera scene](docs/img/vrx_3d_scene.png)
 
-![Measured VRX results](docs/img/vrx_results.png)
+![Measured VRX results](docs/img/vrx_final/vrx_results.png)
 
 The original Python simulator remains available as a fast regression baseline.
 Its nine experiments collected 12/12 with zero bank hits in 80.5–87.0 seconds;

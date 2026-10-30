@@ -244,3 +244,26 @@ This document records key design decisions, rationale, and alternatives consider
   annotated image frames. Decoded and visually inspected frame 75 in
   `docs/img/vrx_recovery_debug.png`. Bags remain ignored. A fresh full matrix will
   use the fixed, committed runtime and a new output directory.
+
+### DECISION-014: Keep the 3D scene visible with an explicit GUI layout
+
+- Restart diagnostics revealed two instrumentation/layout issues. Gazebo's C++
+  collection logs were buffered until shutdown; live CSV correctly showed five
+  items collected while the log-wait probe timed out. Retained the marker check
+  after shutdown and used live counters while running. No check was discarded.
+- The unchanged 100-pose / 45-second GUI assertion intermittently timed out with
+  static ~1 Hz poses. Basic Qt rendering still timed out. Floating the image
+  feed alone passed in 18.300 s; the full helper layout below passed in 2.095 s.
+  The installed Gazebo default config explicitly floats helper plugins;
+  ours left them docked, allowing them to obscure the 3D scene.
+- Match that layout: 3D scene is the sole docked view; nonvisual helper plugins are
+  tiny floating items, controls/stats are anchored floating overlays, screenshot
+  is a small button, and the camera feed is a floating panel. No global GUI config
+  or graphics driver settings were changed. Default Qt rendering is retained.
+- The same 100-pose movement assertion then passed in 2.095 s. Two complete fresh
+  GUI launch/collect/Ctrl-C/restart cycles also passed, each with 100 moving poses,
+  a fresh first collection, exit 0, a flushed summary and no runtime errors.
+- Final seven-case physics trials identify e17c01c and their exact hash. The only
+  subsequent runtime-source change is GUI layout. For all seven configurations,
+  generated SDF is byte-identical after removing only the GUI element; proof is
+  M6_gui_only_diff.json. New build/all 82 tests also pass.

@@ -1,0 +1,12 @@
+{
+  "initial_marker_probe": "Traceback (most recent call last):\n  File \"/tmp/vrx_restart_probe.py\", line 20, in <module>\n    else:raise RuntimeError('Actual collection/follow startup not observed')\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Actual collection/follow startup not observed\n",
+  "initial_marker_run_summary": {
+    "items_collected": 5,
+    "duration_s": 56.95,
+    "items_per_min": 5.27,
+    "path_length_m": 37.22,
+    "bank_hits": 0
+  },
+  "pose_probe_before_layout_fix": "Traceback (most recent call last):\n  File \"/tmp/vrx_restart_probe.py\", line 24, in <module>\n    result=subprocess.run(['gz','topic','-e','-t','/gui/camera/pose','-n','100'],env=env,capture_output=True,text=True,timeout=45,check=True)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 2116, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n  File \"/usr/lib/python3.12/subprocess.py\", line 1253, in _check_timeout\n    raise TimeoutExpired(\nsubprocess.TimeoutExpired: Command '['gz', 'topic', '-e', '-t', '/gui/camera/pose', '-n', '100']' timed out after 45 seconds\n",
+  "basic_render_loop_timeout_message_blocks": 46
+}

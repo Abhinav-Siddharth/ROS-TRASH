@@ -569,3 +569,42 @@ This log records progress and verification output milestone-by-milestone.
   Failed acceptance JSON and 82-test/build output are retained in verification/vrx.
 - Committing both corrections before the next matrix fixes its exact runtime
   provenance. M6 hosted gate remains pending; no earlier failed result is relabelled.
+
+### VRX M6 final local delivery gates PASSED
+
+- Tested committed recovery/runtime revision e17c01c with seven actual physical
+  software-rendered missions, isolated domains/partitions. All seven collected
+  12/12, all stopped cleanly, no runtime errors. Hits: 0/2/0 for nominal seeds
+  1/2/3; zero for all four current/wave cases. Completion sim seconds:
+  154.605 / 104.580 / 89.760 / 156.895 / 131.580 / 154.760 / 89.760.
+  Source hash: f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1.
+- Command: `python3 docs/run_vrx_experiments.py --output log/vrx_m6_final_matrix
+  --workers 2 --domain-base 120`, with PYTHONNOUSERSITE=1 and software rendering.
+  Exited 0. Raw JSON/CSV/summary files: docs/results/vrx_final/. Source hash stayed
+  unchanged through the trials. Final graph was rendered from those files and
+  visually inspected. Historical M5 data is retained and labelled historical.
+- `./tools/verify.sh` exited 0 on the corrected runtime: all 82 tests passed,
+  original seeds 1/2/3 passed with 12/12 and zero hits. Actual final output:
+  ```text
+  PASSED: SEED=3 acceptance check passed
+  ==========================================
+  All acceptance checks PASSED successfully!
+  ==========================================
+  ```
+  Full stdout: M6_final_reference_verify.txt. Protected verifier files unchanged.
+- Decision 014 fixes the remaining GUI layout bug while retaining every diagnostic
+  assertion. Initial failed probes, buffered-log diagnosis and basic-render-loop
+  experiment remain recorded in M6_gui_layout_failures.json. Final native movement
+  check: 100 poses in 2.095 s with actual camera movement.
+- Exact user restart flow passed twice on the final layout: launch GUI, real first
+  collection, 100 moving GUI poses within 45 s, Ctrl-C, exit 0, no errors and final
+  summary. A second launch resets scoring and repeats cleanly. Evidence:
+  M6_restart_probe.json; no orphaned mission processes remain.
+- The GUI-only final world change leaves the non-GUI SDF byte-identical for every
+  trial (M6_gui_only_diff.json). Final pre-commit build/tests also passed:
+  `Summary: 82 tests, 0 errors, 0 failures, 0 skipped` (M6_final_result.txt).
+- One-command demo, fresh checkout, restart, architecture, viva explanation,
+  verification and candid limitations are documented in VRX_GUIDE.md.
+- Hosted gate and final publication status are linked from PR #1:
+  https://github.com/Abhinav-Siddharth/ROS-TRASH/pull/1 . Its live checks repeat a
+  fresh setup/build, full reference verifier and three physical VRX missions.

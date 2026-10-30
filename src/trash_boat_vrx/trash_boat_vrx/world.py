@@ -236,18 +236,40 @@ def make_world(config: WorldConfig) -> str:
                   ambient_light='0.65 0.65 0.65')
     props = child(view, 'gz-gui')
     child(props, 'property', 'docked', key='state', type='string')
+    child(props, 'property', 'false', key='showTitleBar', type='bool')
     for filename, name in [('GzSceneManager', 'Scene Manager'),
                            ('InteractiveViewControl', 'View Control'),
                            ('CameraTracking', 'Camera Tracking'),
                            ('WorldControl', 'World Control'), ('WorldStats', 'Statistics'),
                            ('Screenshot', 'Screenshot')]:
         element = plugin(gui, filename, name)
+        props = child(element, 'gz-gui')
+        child(props, 'property', 'floating', key='state', type='string')
+        child(props, 'property', 'false', key='showTitleBar', type='bool')
+        child(props, 'property', 'false', key='resizable', type='bool')
+        if filename in ('WorldControl', 'WorldStats'):
+            width, height = ('300', '72') if filename == 'WorldControl' else ('290', '110')
+            child(props, 'property', width, key='width', type='double')
+            child(props, 'property', height, key='height', type='double')
+            child(props, 'property', '1', key='z', type='double')
+            anchors = child(props, 'anchors', target='3D View')
+            side = 'left' if filename == 'WorldControl' else 'right'
+            child(anchors, 'line', own=side, target=side)
+            child(anchors, 'line', own='bottom', target='bottom')
+        elif filename == 'Screenshot':
+            for key, value in [('width', '50'), ('height', '50'), ('x', '30'), ('y', '540')]:
+                child(props, 'property', value, key=key, type='double')
+        else:
+            child(props, 'property', '5', key='width', type='double')
+            child(props, 'property', '5', key='height', type='double')
         if filename == 'CameraTracking':
             child(element, 'follow_target', 'trash_boat')
             child(element, 'follow_offset', '-5 -7 5')
     image_view = plugin(gui, 'ImageDisplay', 'Boat camera', topic='/vrx/camera')
     props = child(image_view, 'gz-gui')
-    child(props, 'property', 'docked', key='state', type='string')
+    child(props, 'property', 'floating', key='state', type='string')
+    for key, value in [('width', '420'), ('height', '460'), ('x', '30'), ('y', '70')]:
+        child(props, 'property', value, key=key, type='double')
     for name, size, pose, color in [
         ('water', f'{config.canal_length} {2 * config.half_width} 0.05',
          f'{config.canal_length / 2} 0 -0.1 0 0 0', '0.04 0.27 0.38 1'),

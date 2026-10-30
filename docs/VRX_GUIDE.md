@@ -165,7 +165,7 @@ at least 11/12 items in 420 simulated seconds, at most three bank contact transi
 consistent CSV/summary data and clean process shutdown. It rejects runtime errors.
 Wall time is recorded separately and bounded to catch a stopped/slow simulator.
 
-[Seven measured trials](RESULTS_VRX.md) include currents 0, 0.05 and 0.15 m/s and
+[Seven final measured trials](RESULTS_VRX_FINAL.md) include currents 0, 0.05 and 0.15 m/s and
 wave amplitudes 0, 0.05 and 0.10 m. The result files identify their exact source hash.
 Earlier development failures remain documented, rather than being overwritten.
 
@@ -180,7 +180,8 @@ Earlier development failures remain documented, rather than being overwritten.
   still water; this is not a validated ocean-current or wind model.
 - Collection is an explicit geometric intake event with removal, not a simulated
   conveyor, net entanglement or payload capacity model.
-- Nominal seed 2 had three end-bank contact transitions. It passes the stated
+- Nominal seed 2 had two end-bank contact transitions in the final matrix
+  (three in earlier trials). It passes the stated
   contract; collision-free operation for every seed or disturbance is not claimed.
 - These are simulation results. Hardware, uncoloured real litter, GPS/IMU noise,
   severe waves and deployment on water have not been validated.

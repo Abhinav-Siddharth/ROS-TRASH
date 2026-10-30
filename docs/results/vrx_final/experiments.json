@@ -1,0 +1,395 @@
+{
+  "provenance": {
+    "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+    "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+    "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+  },
+  "runs": [
+    {
+      "backend": "vrx",
+      "seed": 1,
+      "current": 0.05,
+      "wave_amplitude": 0.0,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=1",
+        "current:=0.05",
+        "wave_amplitude:=0.0",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/nominal_seed1"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 154.605,
+      "images": 1546,
+      "detection_frames": 1546,
+      "nonempty_detections": 1246,
+      "commands": 3079,
+      "thruster_messages": 3092,
+      "poses": 2865,
+      "states": {
+        "SEARCH": 545,
+        "APPROACH": 2441,
+        "COLLECT": 93
+      },
+      "last_pose": [
+        40.993288078829174,
+        -0.21991360908368118
+      ],
+      "wall_seconds": 157.86,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 154.61,
+        "items_per_min": 4.66,
+        "path_length_m": 83.76,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "nominal_seed1",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 2,
+      "current": 0.05,
+      "wave_amplitude": 0.0,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=2",
+        "current:=0.05",
+        "wave_amplitude:=0.0",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/nominal_seed2"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 2,
+      "sim_seconds": 104.58,
+      "images": 1046,
+      "detection_frames": 1046,
+      "nonempty_detections": 697,
+      "commands": 2091,
+      "thruster_messages": 2091,
+      "poses": 1926,
+      "states": {
+        "SEARCH": 622,
+        "APPROACH": 1368,
+        "COLLECT": 101
+      },
+      "last_pose": [
+        58.888900717435405,
+        2.2142563644884574
+      ],
+      "wall_seconds": 107.76,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 104.59,
+        "items_per_min": 6.88,
+        "path_length_m": 63.46,
+        "bank_hits": 2
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "nominal_seed2",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 3,
+      "current": 0.05,
+      "wave_amplitude": 0.0,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=3",
+        "current:=0.05",
+        "wave_amplitude:=0.0",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/nominal_seed3"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 89.76,
+      "images": 898,
+      "detection_frames": 898,
+      "nonempty_detections": 598,
+      "commands": 1795,
+      "thruster_messages": 1773,
+      "poses": 1655,
+      "states": {
+        "SEARCH": 560,
+        "APPROACH": 1133,
+        "COLLECT": 102
+      },
+      "last_pose": [
+        58.34434177215091,
+        -0.16511471860502883
+      ],
+      "wall_seconds": 92.82,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 89.77,
+        "items_per_min": 8.02,
+        "path_length_m": 61.99,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "nominal_seed3",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 1,
+      "current": 0.0,
+      "wave_amplitude": 0.0,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=1",
+        "current:=0.0",
+        "wave_amplitude:=0.0",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/zero_current"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 156.895,
+      "images": 1569,
+      "detection_frames": 1569,
+      "nonempty_detections": 1128,
+      "commands": 3137,
+      "thruster_messages": 3137,
+      "poses": 2910,
+      "states": {
+        "SEARCH": 866,
+        "APPROACH": 2180,
+        "COLLECT": 91
+      },
+      "last_pose": [
+        33.332351604602195,
+        -0.23845987234901939
+      ],
+      "wall_seconds": 160.02,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 156.9,
+        "items_per_min": 4.59,
+        "path_length_m": 89.33,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "zero_current",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 1,
+      "current": 0.15,
+      "wave_amplitude": 0.0,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=1",
+        "current:=0.15",
+        "wave_amplitude:=0.0",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/strong_current"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 131.58,
+      "images": 1316,
+      "detection_frames": 1316,
+      "nonempty_detections": 1170,
+      "commands": 2611,
+      "thruster_messages": 2631,
+      "poses": 2423,
+      "states": {
+        "SEARCH": 229,
+        "APPROACH": 2321,
+        "COLLECT": 61
+      },
+      "last_pose": [
+        52.873314799439136,
+        -0.3321937229429573
+      ],
+      "wall_seconds": 134.54,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 131.59,
+        "items_per_min": 5.47,
+        "path_length_m": 69.76,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "strong_current",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 1,
+      "current": 0.05,
+      "wave_amplitude": 0.05,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=1",
+        "current:=0.05",
+        "wave_amplitude:=0.05",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/small_waves"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 154.76,
+      "images": 1548,
+      "detection_frames": 1548,
+      "nonempty_detections": 1249,
+      "commands": 3095,
+      "thruster_messages": 3095,
+      "poses": 2868,
+      "states": {
+        "SEARCH": 557,
+        "APPROACH": 2447,
+        "COLLECT": 91
+      },
+      "last_pose": [
+        40.9892448478242,
+        -0.22238737767191435
+      ],
+      "wall_seconds": 157.79,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 154.77,
+        "items_per_min": 4.65,
+        "path_length_m": 83.84,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "small_waves",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    },
+    {
+      "backend": "vrx",
+      "seed": 3,
+      "current": 0.05,
+      "wave_amplitude": 0.1,
+      "command": [
+        "ros2",
+        "launch",
+        "trash_boat_vrx",
+        "mission.launch.py",
+        "seed:=3",
+        "current:=0.05",
+        "wave_amplitude:=0.1",
+        "headless:=true",
+        "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_final_matrix/larger_waves"
+      ],
+      "collected": 12,
+      "remaining": 0,
+      "bank_hits": 0,
+      "sim_seconds": 89.76,
+      "images": 898,
+      "detection_frames": 898,
+      "nonempty_detections": 596,
+      "commands": 1779,
+      "thruster_messages": 1795,
+      "poses": 1655,
+      "states": {
+        "SEARCH": 548,
+        "APPROACH": 1129,
+        "COLLECT": 102
+      },
+      "last_pose": [
+        58.342412483505825,
+        -0.16536980428611356
+      ],
+      "wall_seconds": 92.75,
+      "clean_shutdown": true,
+      "metrics": {
+        "items_collected": 12,
+        "duration_s": 89.77,
+        "items_per_min": 8.02,
+        "path_length_m": 61.96,
+        "bank_hits": 0
+      },
+      "runtime_errors": [],
+      "passed": true,
+      "error": null,
+      "case": "larger_waves",
+      "exit_code": 0,
+      "provenance": {
+        "commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+        "runtime_sha256": "f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1",
+        "vrx_commit": "03eae362bb544f630595acd53b931e4a7060dffd"
+      }
+    }
+  ],
+  "all_passed": true
+}

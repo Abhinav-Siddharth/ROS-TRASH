@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "tested_base_commit": "e17c01cf9ef5ac137baaa6b05201e6fd42ddfc59",
+  "checks": [
+    {
+      "case": "nominal_seed1",
+      "non_gui_sdf_sha256": "ece9386fb7fc23780593352856d6b2380f7dfb29bc8ce5c9a91cb5219a774b4e",
+      "identical": true
+    },
+    {
+      "case": "nominal_seed2",
+      "non_gui_sdf_sha256": "792dd33d811bc26cfc6a486298ba8993ff538d0f1ca323624d5f84f3b085f414",
+      "identical": true
+    },
+    {
+      "case": "nominal_seed3",
+      "non_gui_sdf_sha256": "d8be6dadc132b8bf3522baf9004e070a46ba77957743ec0b1bacca57808a58fc",
+      "identical": true
+    },
+    {
+      "case": "zero_current",
+      "non_gui_sdf_sha256": "629d4816ed0a9710aa1f7a62b20385fe1b1c4d67edbf0d053c1fc342cf03d6fa",
+      "identical": true
+    },
+    {
+      "case": "strong_current",
+      "non_gui_sdf_sha256": "092cf100d9de046bd364882576a94398e5498f4563c3bc219be98e54b563b787",
+      "identical": true
+    },
+    {
+      "case": "small_waves",
+      "non_gui_sdf_sha256": "869b68f8b668011b440b1be6ec27188acc89f09bffc755d9d1b4fae65d21c1a6",
+      "identical": true
+    },
+    {
+      "case": "larger_waves",
+      "non_gui_sdf_sha256": "787bc0bd27c1433c136f7c639e01b7a5fdc39c3993a38ec7018f9c1be2e80ec9",
+      "identical": true
+    }
+  ]
+}
