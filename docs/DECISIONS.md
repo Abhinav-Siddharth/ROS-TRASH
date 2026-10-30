@@ -204,3 +204,43 @@ This document records key design decisions, rationale, and alternatives consider
   Native frequency inspection also showed live 40–50 Hz pose traffic. No sampling
   count, deadline, movement bound or production acceptance threshold was reduced.
   The final scene screenshot was captured from the moving follow view and inspected.
+
+### DECISION-012: Recover toward the safe corridor after collection or visual loss
+
+- Hosted run 40999639499 passed reference missions and physical seeds 1/2, then
+  physical seed 3 failed at 9/12 and four contacts (102.45 sim s). Retained its
+  actual log excerpt in M6_ci_failure.json. State/pose telemetry showed APPROACH
+  persisting after nonempty detections stopped; x decreased while y moved farther
+  outward. This was a real algorithm failure, not a rendering or CI error.
+- The old retreat always commanded straight reverse, assuming collection happened
+  while facing a bank. A hull collecting while facing inward reverses outward.
+  Recovery now aims at the closest point of the existing safe corridor, chooses
+  forward/reverse by the shorter heading change, and steers toward it. Visual loss
+  aborts latched docking and recovers if outside the corridor. No target positions
+  or scorer data enter this calculation; it uses only allowed boat localization.
+- Added multi-step regressions for inward/outward headings on both sides and both
+  end banks, plus visual-loss docking. Existing regression assertions remain.
+  Scoring, environment settings, sensor data, thresholds and speed limits are
+  unchanged. Straight reverse remains the choice when the hull faces outward.
+- This is a correction within the approved physical approach/recovery scope. The
+  historical M5 seven-case measurements remain attributable to their original
+  source hash; new measurements identify the recovery implementation separately.
+
+### DECISION-013: Signal handlers request shutdown without interrupting native ROS calls
+
+- During the first recovery-validation matrix, seed 3 collected 12/12 with zero
+  contacts but correctly FAILED because the thruster node raised a pybind
+  conversion RuntimeError from `take_message` immediately after SIGINT. Preserve
+  the failed acceptance JSON in `M6_shutdown_failure.json`; do not suppress it.
+- Replace the integration runtime's exception-raising Python signal handler with
+  a stop flag. The bounded 0.1 s executor iteration finishes, then shutdown occurs
+  in order. Repeated signals are ignored only during teardown as before. Genuine
+  callback/runtime exceptions still propagate and fail acceptance.
+- Added a real-node regression that signals inside an active callback and requires
+  the callback to return before process exit, while retaining the repeated-signal
+  cleanup regression. All 82 tests pass with zero errors/failures/skips.
+- The failed matrix was stopped explicitly; unfinished cases are not successes.
+  A seven-topic real seed-3 bag captured 1980 messages over 17.46 s, including 175
+  annotated image frames. Decoded and visually inspected frame 75 in
+  `docs/img/vrx_recovery_debug.png`. Bags remain ignored. A fresh full matrix will
+  use the fixed, committed runtime and a new output directory.

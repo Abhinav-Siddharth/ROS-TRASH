@@ -16,7 +16,7 @@
 
 import math
 
-from trash_boat_control.logic import CollectorLogic, Command
+from trash_boat_control.logic import CollectorLogic, Command, wrap_angle
 
 
 class MarineCollectorLogic:
@@ -66,16 +66,16 @@ class MarineCollectorLogic:
             return command
         if command.state == 'COLLECT':
             return command
+        if self.docking and command.state == 'SEARCH':
+            self.docking = False
+            self.retreating = outside
         if self.retreating:
             if outside:
-                return Command(v=-self.retreat_speed, w=0.0,
-                               collect=False, state='APPROACH')
+                return self._recover(pose, safe_y)
             self.retreating = False
         if command.state != 'APPROACH':
             if command.state == 'SEARCH' and abs(command.w) > self.turn_in_place_threshold:
                 return Command(v=0.0, w=command.w, collect=False, state='SEARCH')
-            if self.docking and command.state == 'SEARCH':
-                return Command(v=0.0, w=0.0, collect=False, state='APPROACH')
             return command
         fwd, left = detections[0]
         cosine, sine = math.cos(yaw), math.sin(yaw)
@@ -109,4 +109,20 @@ class MarineCollectorLogic:
             speed = min(reference.approach_speed, reference.k_lin * waypoint_distance)
             speed *= max(0.0, math.cos(bearing))
         turn = max(-reference.w_max, min(reference.w_max, reference.k_ang * bearing))
+        return Command(v=speed, w=turn, collect=False, state='APPROACH')
+
+    def _recover(self, pose: tuple[float, float, float], safe_y: float) -> Command:
+        """Move toward the safe corridor using the closer forward or reverse heading."""
+        x, y, yaw = pose
+        target_x = max(self.end_clearance,
+                       min(self.reference.canal_length - self.end_clearance, x))
+        target_y = max(-safe_y, min(safe_y, y))
+        error = wrap_angle(math.atan2(target_y - y, target_x - x) - yaw)
+        direction = 1.0
+        if abs(error) > math.pi / 2:
+            direction = -1.0
+            error = wrap_angle(error - math.pi)
+        speed = direction * self.retreat_speed * max(0.0, math.cos(error))
+        turn = max(-self.reference.w_max,
+                   min(self.reference.w_max, self.reference.k_ang * error))
         return Command(v=speed, w=turn, collect=False, state='APPROACH')

@@ -46,8 +46,8 @@ The reference backend requires no renderer. The complete workspace now includes 
 VRX extension, so fetch its pinned dependency before a full build. Neither backend
 uses learned models, hardware drivers, or a Python virtual environment.
 
-Start in the repository root. In a new checkout, `git clone` this repository and
-`cd ROS-TRASH` first.
+Start in the repository root. For a new checkout of this VRX edition, follow the
+explicit branch-clone command in the [fresh setup guide](docs/VRX_GUIDE.md#fresh-checkout).
 
 ```bash
 # Fetch the official pinned source once (no global changes).

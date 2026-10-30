@@ -16,6 +16,8 @@
 
 import math
 
+import pytest
+
 from trash_boat_control.logic import CollectorLogic
 from trash_boat_vrx.marine_logic import MarineCollectorLogic
 
@@ -64,3 +66,37 @@ def test_final_dock_and_retreat_for_displaced_trash() -> None:
     assert command.v < 0 and command.w == 0
     command = logic.step(5, (20, 2.1, math.pi / 2), [], None)
     assert not logic.retreating and command.state == 'SEARCH'
+
+
+@pytest.mark.parametrize('pose', [
+    (42.0, -2.65, 0.1), (42.0, 2.65, -0.1),
+    (42.0, -2.65, -0.1), (42.0, 2.65, 0.1),
+    (58.8, 0.0, 0.0), (1.2, 0.0, math.pi),
+])
+def test_recovery_reaches_corridor_for_either_collection_heading(pose: tuple) -> None:
+    """Losing sight after collection must never reverse an inward-facing hull outward."""
+    logic = MarineCollectorLogic(CollectorLogic())
+    assert logic.step(1, pose, [(1.0, 0.0)], 1).collect
+    x, y, yaw = pose
+    initial = (x, y)
+    for tick in range(300):
+        command = logic.step(2 + tick * 0.05, (x, y, yaw), [], None)
+        assert not command.collect
+        # An independent kinematic integration catches an indefinitely wrong retreat.
+        x += command.v * math.cos(yaw) * 0.05
+        y += command.v * math.sin(yaw) * 0.05
+        yaw += command.w * 0.05
+        if not logic.retreating:
+            break
+    assert not logic.retreating, (initial, (x, y))
+    assert abs(y) <= 2.2 and 1.4 <= x <= 58.6
+
+
+def test_lost_target_aborts_docking_and_recovers() -> None:
+    """A vanished visual target cannot latch docking forever beside a bank."""
+    logic = MarineCollectorLogic(CollectorLogic())
+    logic.step(1, (20, 2.2, 0), [(0, 1.6)], 1)
+    assert logic.docking
+    command = logic.step(2, (20, 2.65, math.pi / 2), [], 2)
+    assert not logic.docking and logic.retreating
+    assert command.v < 0 and not command.collect

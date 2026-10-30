@@ -532,3 +532,40 @@ This log records progress and verification output milestone-by-milestone.
   Evidence: `M6_build.txt`, `M6_test.txt`, `M6_test_result.txt`.
 - Hosted CI status will be recorded after publication; M6 is not declared complete
   until that run is green.
+
+### VRX M6 follow-up: hosted failure reproduced; recovery correction under validation
+
+- Published candidate 79fd955 in PR #1 and ran real hosted CI 40999639499.
+  Fresh setup/build, all tests, all three reference missions and physical seeds
+  1/2 passed. Physical seed 3 FAILED: 9/12, four real contacts, 102.45 simulated
+  seconds. No runtime errors; detections became empty while APPROACH continued.
+  Failure retained in `M6_ci_failure.json` and the hosted artifact.
+- Diagnosed pose/state telemetry: straight reverse moved an inward-facing hull
+  farther out of the corridor. Pure reproduction of the previous committed logic
+  ended at y=-3.099 after 15 s without recovering; corrected logic entered the
+  safe corridor at y=-2.186 in 2.25 s. This is a kinematic diagnostic, not an
+  acceptance mission (`M6_recovery_regression.json`).
+- Corrected recovery aims at the closest safe-corridor point and steers using
+  forward/reverse according to current heading. Visual loss releases docking.
+  No simulator scoring, acceptance thresholds, sensor data or frozen environment
+  values changed. Decision 012 records the cause and alternatives.
+- Seven new regression cases cover both side/end banks, inward/outward headings
+  and lost visual targets. Actual build/test result: `Summary: 81 tests, 0 errors,
+  0 failures, 0 skipped`. The original tests were preserved.
+- Repeating the complete seven-case physical matrix with software rendering and
+  unchanged acceptance, plus the protected full reference verifier. Results are
+  recorded separately from the original M5 source hash.
+
+- Recovery trial seed 3 reached 12/12, zero contacts, 89.76 sim s but correctly
+  FAILED on a shutdown traceback. The signal handler raised inside native
+  `take_message`, producing a pybind conversion RuntimeError. Stopped the failed
+  matrix explicitly; incomplete disturbance cases are not counted as passing.
+- Decision 013: handlers now request shutdown by flag and allow the bounded native
+  executor call to return. Runtime errors remain fatal; no broad exception catch
+  or verifier filtering was added. New real-node callback/signal regression plus
+  all existing tests: `Summary: 82 tests, 0 errors, 0 failures, 0 skipped`.
+- Recorded seven real diagnostic topics: 1980 messages over 17.46 seconds, 175
+  annotated frames. Decoded/visually inspected frame 75 (`vrx_recovery_debug.png`).
+  Failed acceptance JSON and 82-test/build output are retained in verification/vrx.
+- Committing both corrections before the next matrix fixes its exact runtime
+  provenance. M6 hosted gate remains pending; no earlier failed result is relabelled.

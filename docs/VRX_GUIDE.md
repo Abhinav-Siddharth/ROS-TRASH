@@ -37,7 +37,17 @@ OpenGL/EGL renderer; a software Mesa renderer can be used with
 
 ## Fresh checkout
 
-Use Ubuntu 24.04, ROS 2 Jazzy, Python 3.12 and Gazebo Harmonic. Start in this repository.
+Use Ubuntu 24.04, ROS 2 Jazzy, Python 3.12 and Gazebo Harmonic. The VRX delivery is
+on `codex/vrx-simulation` in [PR #1](https://github.com/Abhinav-Siddharth/ROS-TRASH/pull/1).
+For a separate fresh checkout:
+
+```bash
+git clone --branch codex/vrx-simulation https://github.com/Abhinav-Siddharth/ROS-TRASH.git
+cd ROS-TRASH
+```
+
+On the prepared machine, use the existing checkout instead of cloning again.
+
 The dependency download is the official, explicitly approved VRX release, pinned
 by exact source SHA in `dependencies.repos`. The generated world needs no Fuel assets.
 
@@ -81,7 +91,7 @@ perception or decision nodes. Boat localization is an ideal simulated sensor.
 
 The marine brain reuses the reference priority order: **avoid bank → collect
 cooldown → approach → search**. Physical approach has internal staging, alignment,
-creeping and retreat phases, all reported under `APPROACH` for the existing interface.
+creeping and recovery phases, all reported under `APPROACH` for the existing interface.
 
 1. Convert orange blob centroids into camera rays using the real camera intrinsics.
 2. Intersect rays with the water plane, accounting for boat height, roll and pitch.
@@ -90,8 +100,9 @@ creeping and retreat phases, all reported under `APPROACH` for the existing inte
 4. Turn toward the actual target, creep forward while aligned, and request collection.
 5. The scorer removes an item only when that request arrives and it is inside the
    original intake: 0–1.5 m forward and ±1.0 m lateral. A waypoint never scores.
-6. Hold the existing cooldown, reverse out of the close approach, then turn to resume
-   the patrol. Large search turns happen in place.
+6. Hold the existing cooldown, then recover toward the safe corridor. Use reverse
+   when facing the bank, or forward when facing inward, steering as needed. Visual
+   loss aborts docking. Resume the patrol; large search turns happen in place.
 
 A velocity command is a desired speed, not a teleport. The thruster controller
 compares it with odometry, computes surge force and yaw torque, and mixes those into

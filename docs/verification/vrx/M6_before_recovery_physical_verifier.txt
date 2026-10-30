@@ -1,0 +1,250 @@
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Finished <<< vrx_gazebo [0.42s]
+Starting >>> wamv_description
+Finished <<< wamv_description [0.09s]
+Starting >>> trash_boat_perception
+Finished <<< trash_boat_control [1.41s]
+Starting >>> trash_boat_sim
+Finished <<< trash_boat_perception [1.38s]
+Starting >>> vrx_ros
+Finished <<< vrx_ros [0.10s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.08s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.40s]
+Finished <<< trash_boat_sim [1.41s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.39s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [0.44s]
+
+Summary: 10 packages finished [4.81s]
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.53s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.52s]
+Finished <<< wamv_description [0.02s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.02s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.02s]
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=176112) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.40s]
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=176114) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.98s]
+--- stderr: trash_boat_control
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=176110) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_control [2.45s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.02s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [2.37s]
+
+Summary: 10 packages finished [6.01s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim
+Summary: 74 tests, 0 errors, 0 failures, 0 skipped
+{"collected": 0, "remaining": 12, "bank_hits": 0, "sim_seconds": 7.105, "images": 71, "detection_frames": 71, "nonempty_detections": 37, "commands": 122, "thruster_messages": 142, "poses": 134, "states": {"SEARCH": 48, "APPROACH": 74}, "last_pose": [7.285164481162267, 0.11896131201317459]}
+{"collected": 1, "remaining": 11, "bank_hits": 0, "sim_seconds": 17.105, "images": 172, "detection_frames": 171, "nonempty_detections": 137, "commands": 322, "thruster_messages": 342, "poses": 321, "states": {"SEARCH": 48, "APPROACH": 264, "COLLECT": 10}, "last_pose": [13.23079565759491, -2.109269694272414]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 27.105, "images": 272, "detection_frames": 271, "nonempty_detections": 237, "commands": 522, "thruster_messages": 542, "poses": 508, "states": {"SEARCH": 48, "APPROACH": 454, "COLLECT": 20}, "last_pose": [14.343690982026242, -1.802377482540919]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 37.105, "images": 372, "detection_frames": 371, "nonempty_detections": 337, "commands": 722, "thruster_messages": 742, "poses": 693, "states": {"SEARCH": 48, "APPROACH": 644, "COLLECT": 30}, "last_pose": [19.20241597025406, 2.189003548104058]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 47.11, "images": 472, "detection_frames": 471, "nonempty_detections": 437, "commands": 922, "thruster_messages": 942, "poses": 876, "states": {"SEARCH": 48, "APPROACH": 844, "COLLECT": 30}, "last_pose": [24.637044892790904, 2.210327446484914]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 56.925, "images": 570, "detection_frames": 570, "nonempty_detections": 536, "commands": 1118, "thruster_messages": 1138, "poses": 1055, "states": {"SEARCH": 48, "APPROACH": 1040, "COLLECT": 30}, "last_pose": [29.589546879271687, 2.210400925767644]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 66.93, "images": 670, "detection_frames": 670, "nonempty_detections": 636, "commands": 1318, "thruster_messages": 1338, "poses": 1238, "states": {"SEARCH": 48, "APPROACH": 1240, "COLLECT": 30}, "last_pose": [34.596010394843645, 2.1961628393259183]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 76.93, "images": 770, "detection_frames": 770, "nonempty_detections": 736, "commands": 1518, "thruster_messages": 1538, "poses": 1421, "states": {"SEARCH": 48, "APPROACH": 1440, "COLLECT": 30}, "last_pose": [39.5357318331732, 2.1977280686875336]}
+{"collected": 6, "remaining": 6, "bank_hits": 0, "sim_seconds": 86.93, "images": 870, "detection_frames": 870, "nonempty_detections": 805, "commands": 1718, "thruster_messages": 1738, "poses": 1604, "states": {"SEARCH": 100, "APPROACH": 1578, "COLLECT": 40}, "last_pose": [44.31691168077521, 1.5262520998319224]}
+{"collected": 7, "remaining": 5, "bank_hits": 0, "sim_seconds": 96.93, "images": 970, "detection_frames": 970, "nonempty_detections": 891, "commands": 1918, "thruster_messages": 1938, "poses": 1787, "states": {"SEARCH": 130, "APPROACH": 1738, "COLLECT": 50}, "last_pose": [50.01919545179418, -1.865316663346504]}
+{"collected": 9, "remaining": 3, "bank_hits": 0, "sim_seconds": 106.93, "images": 1070, "detection_frames": 1070, "nonempty_detections": 991, "commands": 2118, "thruster_messages": 2138, "poses": 1969, "states": {"SEARCH": 130, "APPROACH": 1918, "COLLECT": 70}, "last_pose": [55.10104513054987, -1.036273670043161]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 116.935, "images": 1170, "detection_frames": 1170, "nonempty_detections": 1091, "commands": 2318, "thruster_messages": 2338, "poses": 2152, "states": {"SEARCH": 130, "APPROACH": 2108, "COLLECT": 80}, "last_pose": [58.216462660907425, -2.6005090787615033]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 126.94, "images": 1270, "detection_frames": 1270, "nonempty_detections": 1191, "commands": 2518, "thruster_messages": 2538, "poses": 2335, "states": {"SEARCH": 130, "APPROACH": 2308, "COLLECT": 80}, "last_pose": [58.466601102879146, -0.02188715736887404]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 136.94, "images": 1370, "detection_frames": 1370, "nonempty_detections": 1200, "commands": 2718, "thruster_messages": 2738, "poses": 2526, "states": {"SEARCH": 276, "APPROACH": 2351, "COLLECT": 91}, "last_pose": [55.09494368774304, 0.01797302520827423]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 146.94, "images": 1470, "detection_frames": 1470, "nonempty_detections": 1200, "commands": 2918, "thruster_messages": 2938, "poses": 2718, "states": {"SEARCH": 476, "APPROACH": 2351, "COLLECT": 91}, "last_pose": [47.09500107779214, -5.296895653943049e-05]}
+{
+  "backend": "vrx",
+  "seed": 1,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=1",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_verify_20261030_092402/seed_1"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 154.605,
+  "images": 1546,
+  "detection_frames": 1546,
+  "nonempty_detections": 1247,
+  "commands": 3072,
+  "thruster_messages": 3092,
+  "poses": 2865,
+  "states": {
+    "SEARCH": 536,
+    "APPROACH": 2443,
+    "COLLECT": 93
+  },
+  "last_pose": [
+    40.991797755977046,
+    -0.22002734181900363
+  ],
+  "wall_seconds": 157.69,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 154.62,
+    "items_per_min": 4.66,
+    "path_length_m": 83.78,
+    "bank_hits": 0
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}
+{"collected": 0, "remaining": 12, "bank_hits": 0, "sim_seconds": 7.075, "images": 71, "detection_frames": 71, "nonempty_detections": 29, "commands": 141, "thruster_messages": 141, "poses": 134, "states": {"SEARCH": 84, "APPROACH": 57}, "last_pose": [7.153484721030328, -0.5409757548942776]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 17.08, "images": 171, "detection_frames": 171, "nonempty_detections": 87, "commands": 341, "thruster_messages": 341, "poses": 321, "states": {"SEARCH": 159, "APPROACH": 172, "COLLECT": 10}, "last_pose": [12.312334215248681, -1.1158721011179016]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 27.08, "images": 271, "detection_frames": 271, "nonempty_detections": 87, "commands": 541, "thruster_messages": 541, "poses": 507, "states": {"SEARCH": 359, "APPROACH": 172, "COLLECT": 10}, "last_pose": [20.115281497961092, -1.3436217532121388e-05]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 37.085, "images": 371, "detection_frames": 371, "nonempty_detections": 117, "commands": 741, "thruster_messages": 741, "poses": 692, "states": {"SEARCH": 500, "APPROACH": 231, "COLLECT": 10}, "last_pose": [28.110507526889457, -0.19678775803197368]}
+{"collected": 5, "remaining": 7, "bank_hits": 0, "sim_seconds": 47.085, "images": 471, "detection_frames": 471, "nonempty_detections": 191, "commands": 941, "thruster_messages": 941, "poses": 875, "states": {"SEARCH": 544, "APPROACH": 357, "COLLECT": 40}, "last_pose": [34.0870346085933, -0.8148810872724664]}
+{"collected": 7, "remaining": 5, "bank_hits": 0, "sim_seconds": 57.09, "images": 571, "detection_frames": 571, "nonempty_detections": 291, "commands": 1141, "thruster_messages": 1141, "poses": 1058, "states": {"SEARCH": 544, "APPROACH": 538, "COLLECT": 59}, "last_pose": [39.99776964022577, -0.10044773066932157]}
+{"collected": 8, "remaining": 4, "bank_hits": 0, "sim_seconds": 67.09, "images": 671, "detection_frames": 671, "nonempty_detections": 385, "commands": 1341, "thruster_messages": 1341, "poses": 1241, "states": {"SEARCH": 548, "APPROACH": 723, "COLLECT": 70}, "last_pose": [45.38523048646528, 0.7669894222468676]}
+{"collected": 9, "remaining": 3, "bank_hits": 0, "sim_seconds": 77.09, "images": 771, "detection_frames": 771, "nonempty_detections": 476, "commands": 1541, "thruster_messages": 1541, "poses": 1424, "states": {"SEARCH": 548, "APPROACH": 913, "COLLECT": 80}, "last_pose": [47.211143519847454, 2.5524482340422736]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 87.09, "images": 871, "detection_frames": 871, "nonempty_detections": 543, "commands": 1741, "thruster_messages": 1741, "poses": 1607, "states": {"SEARCH": 584, "APPROACH": 1072, "COLLECT": 85}, "last_pose": [52.26965546981009, 1.5429534330744097]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 97.09, "images": 971, "detection_frames": 971, "nonempty_detections": 620, "commands": 1941, "thruster_messages": 1941, "poses": 1789, "states": {"SEARCH": 626, "APPROACH": 1215, "COLLECT": 100}, "last_pose": [58.26380739199604, 0.33827973050572085]}
+{
+  "backend": "vrx",
+  "seed": 2,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=2",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_verify_20261030_092402/seed_2"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 2,
+  "sim_seconds": 104.58,
+  "images": 1046,
+  "detection_frames": 1046,
+  "nonempty_detections": 695,
+  "commands": 2091,
+  "thruster_messages": 2091,
+  "poses": 1926,
+  "states": {
+    "SEARCH": 626,
+    "APPROACH": 1364,
+    "COLLECT": 101
+  },
+  "last_pose": [
+    58.88868686160666,
+    2.2149651985380516
+  ],
+  "wall_seconds": 107.51,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 104.59,
+    "items_per_min": 6.88,
+    "path_length_m": 63.46,
+    "bank_hits": 2
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}
+{"collected": 0, "remaining": 12, "bank_hits": 0, "sim_seconds": 7.01, "images": 71, "detection_frames": 71, "nonempty_detections": 45, "commands": 140, "thruster_messages": 140, "poses": 133, "states": {"SEARCH": 52, "APPROACH": 88}, "last_pose": [6.971554524822104, 1.0970246438991544]}
+{"collected": 1, "remaining": 11, "bank_hits": 0, "sim_seconds": 17.01, "images": 171, "detection_frames": 170, "nonempty_detections": 60, "commands": 340, "thruster_messages": 340, "poses": 319, "states": {"SEARCH": 212, "APPROACH": 118, "COLLECT": 10}, "last_pose": [13.30825495745373, 0.11711710214106795]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 27.01, "images": 271, "detection_frames": 270, "nonempty_detections": 132, "commands": 540, "thruster_messages": 540, "poses": 506, "states": {"SEARCH": 268, "APPROACH": 252, "COLLECT": 20}, "last_pose": [20.639775775978976, 0.10369681214581741]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 37.005, "images": 371, "detection_frames": 370, "nonempty_detections": 202, "commands": 740, "thruster_messages": 740, "poses": 691, "states": {"SEARCH": 320, "APPROACH": 390, "COLLECT": 30}, "last_pose": [26.784374377370874, 0.37013499073013034]}
+{"collected": 4, "remaining": 8, "bank_hits": 0, "sim_seconds": 47.01, "images": 471, "detection_frames": 471, "nonempty_detections": 249, "commands": 940, "thruster_messages": 940, "poses": 874, "states": {"SEARCH": 420, "APPROACH": 480, "COLLECT": 40}, "last_pose": [33.95769236402873, 0.8553779501275158]}
+{"collected": 5, "remaining": 7, "bank_hits": 0, "sim_seconds": 57.015, "images": 571, "detection_frames": 571, "nonempty_detections": 324, "commands": 1140, "thruster_messages": 1140, "poses": 1057, "states": {"SEARCH": 462, "APPROACH": 628, "COLLECT": 50}, "last_pose": [40.62802727717968, 1.7690773435529936]}
+{"collected": 9, "remaining": 3, "bank_hits": 0, "sim_seconds": 67.02, "images": 671, "detection_frames": 671, "nonempty_detections": 424, "commands": 1340, "thruster_messages": 1340, "poses": 1240, "states": {"SEARCH": 462, "APPROACH": 797, "COLLECT": 81}, "last_pose": [43.34270412464308, -2.278935369390698]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 77.02, "images": 771, "detection_frames": 771, "nonempty_detections": 508, "commands": 1540, "thruster_messages": 1540, "poses": 1422, "states": {"SEARCH": 494, "APPROACH": 955, "COLLECT": 91}, "last_pose": [49.535768697380796, 0.3937373613927055]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 87.025, "images": 871, "detection_frames": 871, "nonempty_detections": 571, "commands": 1740, "thruster_messages": 1740, "poses": 1605, "states": {"SEARCH": 560, "APPROACH": 1079, "COLLECT": 101}, "last_pose": [57.03714563246326, -0.10936694304185363]}
+{
+  "backend": "vrx",
+  "seed": 3,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=3",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_verify_20261030_092402/seed_3"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 89.76,
+  "images": 898,
+  "detection_frames": 898,
+  "nonempty_detections": 598,
+  "commands": 1795,
+  "thruster_messages": 1795,
+  "poses": 1655,
+  "states": {
+    "SEARCH": 560,
+    "APPROACH": 1133,
+    "COLLECT": 102
+  },
+  "last_pose": [
+    58.344386858871395,
+    -0.16473379892370432
+  ],
+  "wall_seconds": 92.75,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 89.77,
+    "items_per_min": 8.02,
+    "path_length_m": 61.97,
+    "bank_hits": 0
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}
+All three physical VRX acceptance missions PASSED.
+Evidence: /home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_verify_20261030_092402

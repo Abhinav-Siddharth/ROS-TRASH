@@ -15,6 +15,7 @@
 """Shared explicit executor lifecycle for integration nodes."""
 
 import signal
+from types import FrameType
 from typing import Type
 
 import rclpy
@@ -25,15 +26,23 @@ from rclpy.signals import SignalHandlerOptions
 
 def run_node(node_type: Type[Node], args: list[str] | None = None) -> None:
     """Own the executor and context so SIGINT cannot race active publishers."""
-    signal.signal(signal.SIGINT, signal.default_int_handler)
-    signal.signal(signal.SIGTERM, signal.default_int_handler)
+    stopping = False
+
+    def request_stop(_number: int, _frame: FrameType | None) -> None:
+        nonlocal stopping
+        stopping = True
+
+    # Raising inside a pybind take_message can replace KeyboardInterrupt with a
+    # conversion RuntimeError. Let the bounded spin finish before destroying ROS.
+    signal.signal(signal.SIGINT, request_stop)
+    signal.signal(signal.SIGTERM, request_stop)
     rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
     executor = SingleThreadedExecutor()
     node = None
     try:
         node = node_type()
         executor.add_node(node)
-        while rclpy.ok():
+        while rclpy.ok() and not stopping:
             executor.spin_once(timeout_sec=0.1)
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass

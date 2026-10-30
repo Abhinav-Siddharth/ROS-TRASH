@@ -1,0 +1,48 @@
+{
+  "backend": "vrx",
+  "seed": 3,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=3",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_verify_20261030_092402/seed_3"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 89.76,
+  "images": 898,
+  "detection_frames": 898,
+  "nonempty_detections": 598,
+  "commands": 1795,
+  "thruster_messages": 1795,
+  "poses": 1655,
+  "states": {
+    "SEARCH": 560,
+    "APPROACH": 1133,
+    "COLLECT": 102
+  },
+  "last_pose": [
+    58.344386858871395,
+    -0.16473379892370432
+  ],
+  "wall_seconds": 92.75,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 89.77,
+    "items_per_min": 8.02,
+    "path_length_m": 61.97,
+    "bank_hits": 0
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}
