@@ -318,3 +318,293 @@ This log records progress and verification output milestone-by-milestone.
 
 
 
+
+### VRX M0: dependency and baseline gate PASSED (2026-10-29)
+
+- Human approved the M0–M6 extension and pinned official VRX downloads. Contract:
+  `docs/VRX_SPEC.md`; authorization and exceptions: DECISION-007.
+- `git clone --depth 1 --branch v3.1.0 https://github.com/osrf/vrx.git external/vrx`.
+  Annotated tag object `185fd8b...` resolves to source commit `03eae362...`; the
+  manifest and bootstrap check pin the resolved source commit.
+- `PYTHONNOUSERSITE=1 ROS_LOG_DIR=/tmp/trash_boat_roslogs bash scripts/bootstrap_vrx.sh`:
+  `Pinned VRX source verified.` An initial `set -u` exposed an unset variable inside
+  ROS setup; the script now disables nounset only while sourcing ROS, then restores it.
+- `colcon build --symlink-install --parallel-workers 2 --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo`
+  with system Python and `CMAKE_BUILD_PARALLEL_LEVEL=2`:
+  `Summary: 9 packages finished [48.7s]`. Actual upstream Surface,
+  SimpleHydrodynamics, Waves and other VRX shared libraries built successfully.
+- Sourced `install/setup.bash`; `colcon test --event-handlers console_cohesion+ &&
+  colcon test-result --verbose` in isolated domain 81 with approved local DDS:
+  `Summary: 37 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M0_build.txt`, `M0_test.txt`. No system installs,
+  no protected tool changes, no algorithm/default changes.
+
+### VRX M1: world and physical scoring gate PASSED
+
+- Added the approved integration package with a deterministic, offline SDF generator,
+  upstream VRX Surface/SimpleHydrodynamics/PolyhedraBuoyancyDrag systems, a real RGB
+  camera, hull contact sensor, and simulator-only C++ force/scoring system.
+- `ros2 run trash_boat_vrx generate_world /tmp/trash_boat_canal.sdf &&
+  gz sdf -k /tmp/trash_boat_canal.sdf`: `Valid.`
+- Actual `world.launch.py headless:=true seed:=1`, isolated domains/partitions,
+  system Python and approved graphics/DDS access; live ROS probe output:
+  ```text
+  {"collected": 0, "remaining": 12, "bank_hits": 0,
+   "camera_fx": 240.00000953674316, "contact_sensor_topic": true,
+   "images": 20, "poses": 100,
+   "last_pose": [2.0, 0.0, 0.12543004729965884], "wall_seconds": 10.07}
+  PASS: explicit scoop, outside item retained, no duplicate score, actual bank contacts
+  {"collected": 1, "remaining": 11, "bank_hits": 1, ...}
+  ```
+  The scoring probe deliberately placed two objects with Gazebo's set_pose service
+  (one inside, one outside), requested two scoops, then drove the boat into a bank
+  with thruster forces. These are controlled scorer tests, NOT acceptance missions.
+  Nominal trials retain the exact seeded spawn distribution. Screenshot:
+  `docs/img/vrx_camera_M1.png`. Both Gazebo and bridge exited cleanly.
+- Failures caught and fixed: missing plugin search path (added proper ament DSV and
+  explicit launch path), camera calibration topic is `/vrx/camera_info`, and launch
+  cleanup can receive repeated shutdown events. Local GZ_IP removes a long discovery
+  delay. Early probes failed honestly on missing data; no assertion was removed.
+- Corrected the new CMake package's lint tests to inspect the source directory, not
+  its build directory. Actual source checks caught three indentation errors and
+  unsupported SPDX-only C++ headers; fixed formatting and added full license headers.
+- Final pre-commit `colcon build --symlink-install --parallel-workers 2 && colcon test
+  --event-handlers console_cohesion+ && colcon test-result --verbose`:
+  `Summary: 51 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M1_{build,test,probe,runtime}.txt`. Protected tools,
+  original algorithms and frozen defaults untouched. The elevated renderer emits
+  EGL probe warnings for the unused NVIDIA device, then successfully renders; no
+  driver or global settings were changed.
+
+### VRX M2: rendered perception gate PASSED
+
+- Added pure pinhole/water-plane projection with boat quaternion, position and
+  known camera mount. The thin detector subscribes ONLY to camera image/calibration
+  and boat localization, uses the existing pure orange-blob detector, publishes
+  nearest-first detections and a real annotated debug image for each frame.
+- Unit checks cover reference pixel directions, combined roll/pitch/yaw, invalid
+  calibration/quaternions, horizon and range rejection. Fixed the reported docstring
+  and decorator formatting errors without changing any assertion or lint rule.
+- Live world `headless:=true seed:=1 boat_x:=10` plus the actual `water_detector`
+  node with simulation time. A controlled calibration placement (not mission input)
+  gave expected body position [3,1] and image-derived [3.08397,1.03487] metres:
+  ```text
+  {"passed": true, "rendered_debug_frames": 12, "expected_body": [3, 1],
+   "detected_body": [3.083971674557771, 1.0348742031273284],
+   "wall_seconds": 3.99}
+  ```
+  `docs/img/vrx_detection_M2.png` was visually inspected; both orange objects are
+  circled in the rendered canal. Small projection bias comes from projecting the
+  visible top of a floating sphere onto the nominal water plane.
+- Final `colcon build --symlink-install --parallel-workers 2 && colcon test
+  --event-handlers console_cohesion+ && colcon test-result --verbose`:
+  `Summary: 57 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M2_{build,test,probe}.txt`. Both real node processes
+  stopped cleanly. The reference detector and controller modules remain unchanged.
+
+### VRX M3: physical thruster control gate PASSED
+
+- Added pure surge/yaw feedback, differential force mixing with ratio-preserving
+  saturation, independent command/odometry freshness checks, and a thin ROS wrapper.
+  SDF and YAML arm/force/watchdog values are cross-checked by a real test.
+- Actual headless world + actual thruster_controller, commanded only through
+  `/cmd_vel`; measured Gazebo odometry and force topics:
+  ```text
+  forward: v=0.79999998 m/s, x=6.51460405 m, left=right=8.00000086 N
+  braking: v=0.00013035 m/s after 3 s of zero command
+  turning: w=1.19999910 rad/s, left=-9.23080638 N, right=9.23082120 N
+  turn stop: w=-0.00001937 rad/s after 3 s of zero command
+  stale command: left=right=0.0 N
+  ```
+  Motion came from forces on a rigid body, not commanded poses/velocities. A stale
+  command cuts thrust; the boat then coasts under physical drag, as expected.
+- Initial probe aborted because its test Twist assigned integers to floating-point
+  fields, triggering ROS serialization's type assertion. Stopped its two identified
+  child process groups, corrected test message types, reran the full motion check.
+  No production assertion, algorithm or test threshold was weakened.
+- Final pre-commit build/test/result gate:
+  `Summary: 66 tests, 0 errors, 0 failures, 0 skipped`.
+- Evidence: `docs/verification/vrx/M3_{build,test,probe}.txt`. Reference decision logic
+  and speed defaults unchanged. No trash status/positions enter thruster control.
+
+### VRX M4: autonomous physical mission gate PASSED
+
+- Added the full VRX mission launch (Gazebo, bridge, rendered perception, camera-only
+  marine brain, force controller, real metrics logger) and independent acceptance
+  monitor. The monitor requires real image/detection/command/pose traffic, exact
+  12-item accounting, unchanged >=11/12 within 420 simulated seconds and <=3 actual
+  contact transitions, CSV/summary agreement, and no runtime errors on shutdown.
+- Real initial attempts exposed distinct failures, retained as evidence:
+  - 12/12 at 90.8 s, one contact, but teardown tracebacks from double SIGINT: FAIL.
+  - Clearance-margin-only fix: four real contact transitions at 39.615 s: FAIL.
+  - Fixed safe waypoint: zero hits but stalled on an item displaced toward a bank;
+    intentionally interrupted diagnostic run around 140 s: FAIL, never acceptance.
+- Inspected state/pose/commands and camera-derived detections, recorded an eight-topic
+  real rosbag (14.24 s, 1960 messages), decoded its images and visually inspected
+  `docs/img/vrx_diagnostic_debug.png`. No bag is tracked. Decisions 008–010 explain
+  the fixes: single-parent interrupt forwarding, cleanup immune to repeated signals,
+  safe approach staging, controlled aligned docking, and reverse retreat before
+  turning away. Search turns with large heading error happen in place.
+- The reference decision class still decides collection from the REAL visual target.
+  A waypoint cannot trigger collection. Original modules/defaults/physics are unchanged
+  except orderly cleanup in node main functions. The new marine algorithm is pure,
+  with declared parameters, and no trash ground truth enters decisions.
+- Actual command (system Python, localhost transports, isolated domain 84):
+  `ros2 run trash_boat_vrx verify_mission --seed 1 --output log/vrx_m4_seed1_docking`
+  ```text
+  collected=12, remaining=0, bank_hits=0, sim_seconds=154.61
+  images=1546, detection_frames=1546, clean_shutdown=true
+  metrics: duration_s=154.61, path_length_m=83.79, items_per_min=4.66
+  runtime_errors=[], passed=true, error=null
+  ```
+  The complete measured JSON is authoritative if a rounded excerpt differs.
+- Final pre-commit build/test/result gate: `Summary: 74 tests, 0 errors, 0 failures,
+  0 skipped`. Includes a real-node repeated SIGINT/SIGTERM teardown regression,
+  waypoint-versus-real-target distinction, docking/retreat, launch validity, no
+  forbidden decision inputs, and metric mismatch rejection.
+- Evidence: `docs/verification/vrx/M4_*`. Failed attempts remain explicitly marked.
+  Protected tools and SPEC section 7 were not edited; no frozen environment settings
+  or collection bounds were changed.
+
+### VRX M5: seeded and disturbance evidence gate PASSED
+
+- Seven real missions passed: nominal seeds 1/2/3 at current 0.05, plus seed-1
+  zero/0.15 currents, 0.05 m waves, and seed-3 0.10 m waves. Every case collected
+  12/12, stopped cleanly, had no runtime errors, and matched final CSV/summary counts,
+  contacts and rounded path/duration. Nominal seed 2 had three actual end-bank contact
+  transitions; all other runs had zero. This limitation is visible in RESULTS_VRX.md.
+- Completion times (sim s): nominal 154.605 / 104.580 / 89.760; zero current 157.160;
+  strong current 131.790; 0.05 m waves 154.760; 0.10 m waves 89.760. No deadlines,
+  collision counter filtering, scoop bounds, frozen settings or assertions changed.
+- Runtime commit bbbae5f, official VRX source 03eae362. Verified the exact source-tree
+  hash stayed unchanged throughout all trials:
+  `a42d31cbf6671a240f6a5f896ee7f8ab1f4bd6c9d1a40eb68d607a599cf95708`.
+- Archived verbatim acceptance JSON, metrics.csv and summary.json for each case in
+  `docs/results/vrx/`; combined report includes source provenance and exact commands.
+  Reproducer: `docs/run_vrx_experiments.py`; graph script reads the actual measurements.
+  `docs/img/vrx_results.png` was visually inspected. Full CSV paths and timestamps are
+  measured data, not fabricated examples or hardcoded controller inputs.
+- Independently ran a stationary physical boat with wave amplitude 0.10 for 12 sim s:
+  188 samples after startup; z ranged 0.0274691–0.2248299 m, quaternion roll/pitch
+  components varied. This proves waves affect physics, beyond merely setting SDF
+  values. Water rendering remains a flat visual plane and is documented as such.
+- Required pre-commit build/test/result gate:
+  `Summary: 74 tests, 0 errors, 0 failures, 0 skipped`.
+- No runtime source changed during M5. Original reference results remain separate.
+
+### VRX M6: delivery candidate; hosted CI pending
+
+- Added `scripts/run_vrx.sh` (one-command GUI/headless launch),
+  `scripts/verify_vrx.sh` (full build/tests plus real VRX seeds 1/2/3), and the
+  setup, architecture, controller explanation and viva guide in VRX_GUIDE.md.
+  Updated CI to fetch the official pinned release, install declared rosdep
+  dependencies and run both independent backend gates with software rendering.
+- Original protected `./tools/verify.sh` exited 0: all 74 tests passed, all original
+  seed 1/2/3 missions collected 12/12 with zero bank hits. Actual final output:
+  ```text
+  PASSED: SEED=3 acceptance check passed
+  ==========================================
+  All acceptance checks PASSED successfully!
+  ==========================================
+  ```
+  Full stdout: `docs/verification/vrx/M6_reference_verify.txt`.
+- Fresh local source checkout, clean ten-package build, distribution libraries and
+  software Mesa rendering passed all 74 tests and real physical seed 3: 12/12,
+  zero contacts, clean shutdown, no runtime errors. This snapshot preceded the
+  final GUI-only follow helper; physics/autonomy were identical. Evidence:
+  `M6_clean_software_verify.txt` and `M6_clean_seed3.json`. Hosted CI checks the
+  final committed source from a fresh checkout.
+- Real graphical seed 42: 12/12, zero contacts, 95.885 simulated seconds,
+  clean shutdown and no errors (`M6_gui_seed42.json`). A separate GUI probe found
+  the SDF follow target did not activate follow mode; the GUI-only helper fixes
+  this via Gazebo's service. Initial probes and their failures remain recorded.
+- Final unchanged CLI follow assertion PASSED: 100 real camera poses within the
+  original 45-second deadline (2.180 s measured), with 1.074 m motion, exceeding
+  the original 0.02 m bound. Native topic frequency was live ~40–50 Hz.
+  Screenshot `docs/img/vrx_3d_scene.png` shows the actual follow view, visually
+  inspected. The complete demo process tree stopped cleanly.
+- An initial sandbox test invocation omitted ROS_LOG_DIR and failed on read-only
+  ~/.ros/log (8 errors / 4 failures). Repeated the required gate with the documented
+  writable log path and local DDS permissions; no code or assertion was weakened.
+- `bash -n` passed for all three launch/bootstrap/verification scripts;
+  `git diff --check` passed. Protected verification tools are unchanged.
+- Final pre-commit gate: `Summary: 74 tests, 0 errors, 0 failures, 0 skipped`.
+  Evidence: `M6_build.txt`, `M6_test.txt`, `M6_test_result.txt`.
+- Hosted CI status will be recorded after publication; M6 is not declared complete
+  until that run is green.
+
+### VRX M6 follow-up: hosted failure reproduced; recovery correction under validation
+
+- Published candidate 79fd955 in PR #1 and ran real hosted CI 40999639499.
+  Fresh setup/build, all tests, all three reference missions and physical seeds
+  1/2 passed. Physical seed 3 FAILED: 9/12, four real contacts, 102.45 simulated
+  seconds. No runtime errors; detections became empty while APPROACH continued.
+  Failure retained in `M6_ci_failure.json` and the hosted artifact.
+- Diagnosed pose/state telemetry: straight reverse moved an inward-facing hull
+  farther out of the corridor. Pure reproduction of the previous committed logic
+  ended at y=-3.099 after 15 s without recovering; corrected logic entered the
+  safe corridor at y=-2.186 in 2.25 s. This is a kinematic diagnostic, not an
+  acceptance mission (`M6_recovery_regression.json`).
+- Corrected recovery aims at the closest safe-corridor point and steers using
+  forward/reverse according to current heading. Visual loss releases docking.
+  No simulator scoring, acceptance thresholds, sensor data or frozen environment
+  values changed. Decision 012 records the cause and alternatives.
+- Seven new regression cases cover both side/end banks, inward/outward headings
+  and lost visual targets. Actual build/test result: `Summary: 81 tests, 0 errors,
+  0 failures, 0 skipped`. The original tests were preserved.
+- Repeating the complete seven-case physical matrix with software rendering and
+  unchanged acceptance, plus the protected full reference verifier. Results are
+  recorded separately from the original M5 source hash.
+
+- Recovery trial seed 3 reached 12/12, zero contacts, 89.76 sim s but correctly
+  FAILED on a shutdown traceback. The signal handler raised inside native
+  `take_message`, producing a pybind conversion RuntimeError. Stopped the failed
+  matrix explicitly; incomplete disturbance cases are not counted as passing.
+- Decision 013: handlers now request shutdown by flag and allow the bounded native
+  executor call to return. Runtime errors remain fatal; no broad exception catch
+  or verifier filtering was added. New real-node callback/signal regression plus
+  all existing tests: `Summary: 82 tests, 0 errors, 0 failures, 0 skipped`.
+- Recorded seven real diagnostic topics: 1980 messages over 17.46 seconds, 175
+  annotated frames. Decoded/visually inspected frame 75 (`vrx_recovery_debug.png`).
+  Failed acceptance JSON and 82-test/build output are retained in verification/vrx.
+- Committing both corrections before the next matrix fixes its exact runtime
+  provenance. M6 hosted gate remains pending; no earlier failed result is relabelled.
+
+### VRX M6 final local delivery gates PASSED
+
+- Tested committed recovery/runtime revision e17c01c with seven actual physical
+  software-rendered missions, isolated domains/partitions. All seven collected
+  12/12, all stopped cleanly, no runtime errors. Hits: 0/2/0 for nominal seeds
+  1/2/3; zero for all four current/wave cases. Completion sim seconds:
+  154.605 / 104.580 / 89.760 / 156.895 / 131.580 / 154.760 / 89.760.
+  Source hash: f9c81ee4b3357f98aea308718c4b3a66e234c09fe0b35e199dabf8a781fae0f1.
+- Command: `python3 docs/run_vrx_experiments.py --output log/vrx_m6_final_matrix
+  --workers 2 --domain-base 120`, with PYTHONNOUSERSITE=1 and software rendering.
+  Exited 0. Raw JSON/CSV/summary files: docs/results/vrx_final/. Source hash stayed
+  unchanged through the trials. Final graph was rendered from those files and
+  visually inspected. Historical M5 data is retained and labelled historical.
+- `./tools/verify.sh` exited 0 on the corrected runtime: all 82 tests passed,
+  original seeds 1/2/3 passed with 12/12 and zero hits. Actual final output:
+  ```text
+  PASSED: SEED=3 acceptance check passed
+  ==========================================
+  All acceptance checks PASSED successfully!
+  ==========================================
+  ```
+  Full stdout: M6_final_reference_verify.txt. Protected verifier files unchanged.
+- Decision 014 fixes the remaining GUI layout bug while retaining every diagnostic
+  assertion. Initial failed probes, buffered-log diagnosis and basic-render-loop
+  experiment remain recorded in M6_gui_layout_failures.json. Final native movement
+  check: 100 poses in 2.095 s with actual camera movement.
+- Exact user restart flow passed twice on the final layout: launch GUI, real first
+  collection, 100 moving GUI poses within 45 s, Ctrl-C, exit 0, no errors and final
+  summary. A second launch resets scoring and repeats cleanly. Evidence:
+  M6_restart_probe.json; no orphaned mission processes remain.
+- The GUI-only final world change leaves the non-GUI SDF byte-identical for every
+  trial (M6_gui_only_diff.json). Final pre-commit build/tests also passed:
+  `Summary: 82 tests, 0 errors, 0 failures, 0 skipped` (M6_final_result.txt).
+- One-command demo, fresh checkout, restart, architecture, viva explanation,
+  verification and candid limitations are documented in VRX_GUIDE.md.
+- Hosted gate and final publication status are linked from PR #1:
+  https://github.com/Abhinav-Siddharth/ROS-TRASH/pull/1 . Its live checks repeat a
+  fresh setup/build, full reference verifier and three physical VRX missions.

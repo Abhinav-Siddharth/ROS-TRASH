@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "purpose": "Two actual GUI launches with fresh scoring, live follow, collection and Ctrl-C shutdown",
+  "runs": [
+    {
+      "run": 0,
+      "launch_exit": 0,
+      "camera_poses": 100,
+      "first_camera": [
+        1.0601937770843506,
+        -5.688158988952637,
+        5.125448703765869
+      ],
+      "last_camera": [
+        6.6535186767578125,
+        -9.255427360534668,
+        5.125448703765869
+      ],
+      "summary": {
+        "items_collected": 1,
+        "duration_s": 11.7,
+        "items_per_min": 5.13,
+        "path_length_m": 7.89,
+        "bank_hits": 0
+      },
+      "runtime_errors": []
+    },
+    {
+      "run": 1,
+      "launch_exit": 0,
+      "camera_poses": 100,
+      "first_camera": [
+        1.1360105276107788,
+        -5.731175422668457,
+        5.125448703765869
+      ],
+      "last_camera": [
+        6.711245059967041,
+        -9.360454559326172,
+        5.125448703765869
+      ],
+      "summary": {
+        "items_collected": 1,
+        "duration_s": 11.77,
+        "items_per_min": 5.1,
+        "path_length_m": 7.97,
+        "bank_hits": 0
+      },
+      "runtime_errors": []
+    }
+  ]
+}

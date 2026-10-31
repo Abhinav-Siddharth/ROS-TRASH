@@ -1,0 +1,7 @@
+{"case": "nominal_seed2", "passed": true, "collected": 12, "bank_hits": 2, "sim_seconds": 104.58}
+{"case": "nominal_seed1", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 154.605}
+{"case": "nominal_seed3", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 89.76}
+{"case": "zero_current", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 156.895}
+{"case": "strong_current", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 131.58}
+{"case": "larger_waves", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 89.76}
+{"case": "small_waves", "passed": true, "collected": 12, "bank_hits": 0, "sim_seconds": 154.76}

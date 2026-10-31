@@ -1,0 +1,47 @@
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.48s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.47s]
+Finished <<< wamv_description [0.02s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.02s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.02s]
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=172466) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.24s]
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=172468) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.79s]
+--- stderr: trash_boat_control
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=172464) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_control [2.22s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [0.94s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [2.16s]
+
+Summary: 10 packages finished [5.45s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim

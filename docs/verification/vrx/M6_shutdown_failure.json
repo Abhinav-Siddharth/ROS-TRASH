@@ -1,0 +1,51 @@
+{
+  "backend": "vrx",
+  "seed": 3,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=3",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/home/abhi_pop/Desktop/ros-projects/ros-projects/log/vrx_m6_recovery_matrix/nominal_seed3"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 89.76,
+  "images": 898,
+  "detection_frames": 898,
+  "nonempty_detections": 598,
+  "commands": 1795,
+  "thruster_messages": 1795,
+  "poses": 1655,
+  "states": {
+    "SEARCH": 560,
+    "APPROACH": 1133,
+    "COLLECT": 102
+  },
+  "last_pose": [
+    58.34390324888265,
+    -0.16530314803849575
+  ],
+  "wall_seconds": 92.63,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 89.77,
+    "items_per_min": 8.02,
+    "path_length_m": 61.97,
+    "bank_hits": 0
+  },
+  "runtime_errors": [
+    "[thruster_controller-4] Traceback (most recent call last):",
+    "[ERROR] [thruster_controller-4]: process has died [pid 190154, exit code 1, cmd '/home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/lib/trash_boat_vrx/thruster_controller --ros-args -r __node:=thruster_controller --params-file /home/abhi_pop/Desktop/ros-projects/ros-projects/install/trash_boat_vrx/share/trash_boat_vrx/config/params.yaml']."
+  ],
+  "passed": false,
+  "error": null
+}

@@ -1,0 +1,130 @@
+Pinned VRX source verified. Resolve declared dependencies if needed with:
+  rosdep install --from-paths src external/vrx --ignore-src -y --rosdistro jazzy
+Build: colcon build --symlink-install --parallel-workers 2
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Finished <<< trash_boat_control [1.19s]
+Starting >>> trash_boat_perception
+Finished <<< vrx_gazebo [1.54s]
+Starting >>> wamv_description
+Finished <<< trash_boat_perception [1.18s]
+Starting >>> trash_boat_sim
+Finished <<< wamv_description [1.05s]
+Starting >>> vrx_ros
+Finished <<< trash_boat_sim [1.18s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.89s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.22s]
+Finished <<< vrx_ros [8.14s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [17.5s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [6.80s]
+
+Summary: 10 packages finished [35.2s]
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Starting >>> trash_boat_perception
+Starting >>> trash_boat_sim
+Starting >>> vrx_ros
+Finished <<< vrx_gazebo [0.46s]
+Starting >>> wamv_description
+Finished <<< vrx_ros [0.46s]
+Finished <<< wamv_description [0.02s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.02s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.02s]
+--- stderr: trash_boat_perception
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=148429) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_perception [1.20s]
+--- stderr: trash_boat_sim
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=148431) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_sim [1.69s]
+--- stderr: trash_boat_control
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 24 warnings
+  Warning: This process (pid=148427) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< trash_boat_control [2.14s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [0.93s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [2.14s]
+
+Summary: 10 packages finished [5.32s]
+  3 packages had stderr output: trash_boat_control trash_boat_perception trash_boat_sim
+Summary: 74 tests, 0 errors, 0 failures, 0 skipped
+{"collected": 0, "remaining": 12, "bank_hits": 0, "sim_seconds": 6.97, "images": 70, "detection_frames": 70, "nonempty_detections": 44, "commands": 139, "thruster_messages": 139, "poses": 132, "states": {"SEARCH": 52, "APPROACH": 87}, "last_pose": [6.9327033399709, 1.0763699507252895]}
+{"collected": 1, "remaining": 11, "bank_hits": 0, "sim_seconds": 16.97, "images": 170, "detection_frames": 170, "nonempty_detections": 60, "commands": 339, "thruster_messages": 339, "poses": 319, "states": {"SEARCH": 211, "APPROACH": 118, "COLLECT": 10}, "last_pose": [13.308407010384784, 0.11710351385355132]}
+{"collected": 2, "remaining": 10, "bank_hits": 0, "sim_seconds": 26.97, "images": 270, "detection_frames": 270, "nonempty_detections": 132, "commands": 539, "thruster_messages": 539, "poses": 505, "states": {"SEARCH": 268, "APPROACH": 251, "COLLECT": 20}, "last_pose": [20.605761998460558, 0.1229676590493438]}
+{"collected": 3, "remaining": 9, "bank_hits": 0, "sim_seconds": 36.975, "images": 370, "detection_frames": 370, "nonempty_detections": 202, "commands": 739, "thruster_messages": 739, "poses": 690, "states": {"SEARCH": 320, "APPROACH": 389, "COLLECT": 30}, "last_pose": [26.744089355748528, 0.35861046610219127]}
+{"collected": 4, "remaining": 8, "bank_hits": 0, "sim_seconds": 46.98, "images": 470, "detection_frames": 470, "nonempty_detections": 248, "commands": 939, "thruster_messages": 939, "poses": 873, "states": {"SEARCH": 420, "APPROACH": 479, "COLLECT": 40}, "last_pose": [33.91621312343195, 0.8406632080251778]}
+{"collected": 5, "remaining": 7, "bank_hits": 0, "sim_seconds": 56.985, "images": 570, "detection_frames": 570, "nonempty_detections": 323, "commands": 1139, "thruster_messages": 1139, "poses": 1056, "states": {"SEARCH": 462, "APPROACH": 627, "COLLECT": 50}, "last_pose": [40.586392900078074, 1.7558227098181634]}
+{"collected": 9, "remaining": 3, "bank_hits": 0, "sim_seconds": 66.985, "images": 670, "detection_frames": 670, "nonempty_detections": 423, "commands": 1339, "thruster_messages": 1339, "poses": 1239, "states": {"SEARCH": 462, "APPROACH": 796, "COLLECT": 81}, "last_pose": [43.32961799466508, -2.273184163597763]}
+{"collected": 10, "remaining": 2, "bank_hits": 0, "sim_seconds": 76.985, "images": 770, "detection_frames": 770, "nonempty_detections": 507, "commands": 1539, "thruster_messages": 1539, "poses": 1422, "states": {"SEARCH": 494, "APPROACH": 954, "COLLECT": 91}, "last_pose": [49.53561823864191, 0.3936495082625394]}
+{"collected": 11, "remaining": 1, "bank_hits": 0, "sim_seconds": 86.99, "images": 870, "detection_frames": 870, "nonempty_detections": 570, "commands": 1739, "thruster_messages": 1739, "poses": 1605, "states": {"SEARCH": 560, "APPROACH": 1078, "COLLECT": 101}, "last_pose": [57.0370554205078, -0.1093425101121841]}
+{
+  "backend": "vrx",
+  "seed": 3,
+  "current": 0.05,
+  "wave_amplitude": 0.0,
+  "command": [
+    "ros2",
+    "launch",
+    "trash_boat_vrx",
+    "mission.launch.py",
+    "seed:=3",
+    "current:=0.05",
+    "wave_amplitude:=0.0",
+    "headless:=true",
+    "output_dir:=/tmp/trash_boat_vrx_clean/log/vrx_clean_seed3"
+  ],
+  "collected": 12,
+  "remaining": 0,
+  "bank_hits": 0,
+  "sim_seconds": 89.76,
+  "images": 898,
+  "detection_frames": 898,
+  "nonempty_detections": 598,
+  "commands": 1795,
+  "thruster_messages": 1795,
+  "poses": 1655,
+  "states": {
+    "SEARCH": 560,
+    "APPROACH": 1133,
+    "COLLECT": 102
+  },
+  "last_pose": [
+    58.34435923528023,
+    -0.16491550422371817
+  ],
+  "wall_seconds": 92.79,
+  "clean_shutdown": true,
+  "metrics": {
+    "items_collected": 12,
+    "duration_s": 89.77,
+    "items_per_min": 8.02,
+    "path_length_m": 61.97,
+    "bank_hits": 0
+  },
+  "runtime_errors": [],
+  "passed": true,
+  "error": null
+}

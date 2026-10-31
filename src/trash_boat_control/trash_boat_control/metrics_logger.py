@@ -160,6 +160,9 @@ def main(args: list[str] | None = None) -> None:
     except (KeyboardInterrupt, rclpy.executors.ExternalShutdownException):
         pass
     finally:
+        # Launch may forward a second interrupt after a terminal/group signal.
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
         executor.shutdown()
         node.write_summary()
         node.destroy_node()

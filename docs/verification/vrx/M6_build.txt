@@ -1,0 +1,22 @@
+Starting >>> vrx_gazebo
+Starting >>> trash_boat_control
+Finished <<< vrx_gazebo [0.36s]
+Starting >>> wamv_description
+Finished <<< wamv_description [0.08s]
+Starting >>> trash_boat_perception
+Finished <<< trash_boat_control [1.25s]
+Starting >>> trash_boat_sim
+Finished <<< trash_boat_perception [1.20s]
+Starting >>> vrx_ros
+Finished <<< vrx_ros [0.09s]
+Starting >>> wamv_gazebo
+Finished <<< wamv_gazebo [0.06s]
+Starting >>> vrx_gz
+Finished <<< vrx_gz [0.38s]
+Finished <<< trash_boat_sim [1.23s]
+Starting >>> trash_boat_bringup
+Finished <<< trash_boat_bringup [1.25s]
+Starting >>> trash_boat_vrx
+Finished <<< trash_boat_vrx [0.44s]
+
+Summary: 10 packages finished [4.31s]

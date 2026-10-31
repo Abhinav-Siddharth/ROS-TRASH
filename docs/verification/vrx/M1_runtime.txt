@@ -1,0 +1,337 @@
+[INFO] [launch]: All log files can be found below /tmp/trash_boat_roslogs/2026-10-29-23-18-00-289800-pop-os-125023
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: Generated VRX canal: /tmp/trash_boat_vrx_j1keifhb/canal.sdf
+[INFO] [gz-1]: process started with pid [125037]
+[INFO] [parameter_bridge-2]: process started with pid [125038]
+[gz-1] [Msg] Gazebo Sim Server v8.15.0
+[gz-1] [Msg] Loading SDF world file[/tmp/trash_boat_vrx_j1keifhb/canal.sdf].
+[gz-1] [Msg] Serving entity system service on [/entity/system/add]
+[gz-1] [Msg] Create service on [/world/trash_canal/create_multiple] (async)
+[gz-1] [Msg] Create service on [/world/trash_canal/create_multiple/blocking] (blocking)
+[gz-1] [Msg] Remove service on [/world/trash_canal/remove] (async)
+[gz-1] [Msg] Remove service on [/world/trash_canal/remove/blocking] (blocking)
+[gz-1] [Msg] Pose service on [/world/trash_canal/set_pose] (async)
+[gz-1] [Msg] Pose service on [/world/trash_canal/set_pose/blocking] (blocking)
+[gz-1] [Msg] Pose service on [/world/trash_canal/set_pose_vector] (async)
+[gz-1] [Msg] Pose service on [/world/trash_canal/set_pose_vector/blocking] (blocking)
+[gz-1] [Msg] Light configuration service on [/world/trash_canal/light_config] (async)
+[gz-1] [Msg] Light configuration service on [/world/trash_canal/light_config/blocking] (blocking)
+[gz-1] [Msg] Physics service on [/world/trash_canal/set_physics] (async)
+[gz-1] [Msg] Physics service on [/world/trash_canal/set_physics/blocking] (blocking)
+[gz-1] [Msg] SphericalCoordinates service on [/world/trash_canal/set_spherical_coordinates] (async)
+[gz-1] [Msg] SphericalCoordinates service on [/world/trash_canal/set_spherical_coordinates/blocking] (blocking)
+[gz-1] [Msg] Enable collision service on [/world/trash_canal/enable_collision] (async)
+[gz-1] [Msg] Enable collision service on [/world/trash_canal/enable_collision/blocking] (blocking)
+[gz-1] [Msg] Disable collision service on [/world/trash_canal/disable_collision] (async)
+[gz-1] [Msg] Disable collision service on [/world/trash_canal/disable_collision/blocking] (blocking)
+[gz-1] [Msg] Material service on [/world/trash_canal/visual_config] (async)
+[gz-1] [Msg] Material service on [/world/trash_canal/visual_config/blocking] (blocking)
+[gz-1] [Msg] Material service on [/world/trash_canal/wheel_slip] (async)
+[gz-1] [Msg] Material service on [/world/trash_canal/wheel_slip/blocking] (blocking)
+[gz-1] [Msg] TrashWorld configured: physical forces, explicit scoop, contact scoring
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[parameter_bridge-2] [INFO] [1793296081.380344702] [vrx_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.381609165] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/camera (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.386403714] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.387646618] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/boat_pose (gz.msgs.Pose) -> /boat_pose (geometry_msgs/msg/PoseStamped)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.389646306] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/odometry (gz.msgs.Odometry) -> /boat/odometry (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.392860931] [vrx_bridge]: Creating ROS->GZ Bridge: [/collect (std_msgs/msg/Empty) -> /vrx/collect (gz.msgs.Empty)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.393959038] [vrx_bridge]: Creating ROS->GZ Bridge: [/boat/thrusters/left (std_msgs/msg/Float64) -> /vrx/left_thrust (gz.msgs.Double)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.394724790] [vrx_bridge]: Creating ROS->GZ Bridge: [/boat/thrusters/right (std_msgs/msg/Float64) -> /vrx/right_thrust (gz.msgs.Double)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.395222531] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/collected (gz.msgs.Int32) -> /trash_collected (std_msgs/msg/Int32)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.395955236] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/remaining (gz.msgs.Int32) -> /trash_remaining (std_msgs/msg/Int32)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793296081.396425389] [vrx_bridge]: Creating GZ->ROS Bridge: [/vrx/bank_hits (gz.msgs.Int32) -> /bank_hits (std_msgs/msg/Int32)] (Lazy 0)
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Input Parameters:
+[gz-1] [Msg] model:     CWR
+[gz-1] [Msg] number:     1
+[gz-1] [Msg] scale:      1.1
+[gz-1] [Msg] angle:      0.4
+[gz-1] [Msg] steepness:  0
+[gz-1] [Msg] amplitude:  0
+[gz-1] [Msg] period:     5
+[gz-1] [Msg] direction:  0.4
+[gz-1] [Msg] tau:  2
+[gz-1] [Msg] gain:  1
+[gz-1] [Msg] Derived Parameters:
+[gz-1] [Msg] amplitudes:  0, 
+[gz-1] [Msg] wavenumbers: 0.161136, 
+[gz-1] [Msg] omegas:      1.25664, 
+[gz-1] [Msg] periods:     [Msg] 5, [Msg] 
+[gz-1] [Msg] phases:      0, 
+[gz-1] [Msg] steepnesses: 0, 
+[gz-1] [Msg] directions:  [Msg] 0.921061 0.389418; [Msg] 
+[gz-1] [Msg] Loaded level [default]
+[gz-1] [Msg] Serving world controls on [/world/trash_canal/control], [/world/trash_canal/control/state] and [/world/trash_canal/playback/control]
+[gz-1] [Msg] Serving GUI information on [/world/trash_canal/gui/info]
+[gz-1] [Msg] World [trash_canal] initialized with [water_physics] physics profile.
+[gz-1] [Msg] Serving world SDF generation service on [/world/trash_canal/generate_world_sdf]
+[gz-1] [Msg] Serving world names on [/gazebo/worlds]
+[gz-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gz-1] [Msg] Resource path get service on [/gazebo/resource_paths/get].
+[gz-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+[gz-1] [Msg] Resource paths published on [/gazebo/resource_paths].
+[gz-1] [Msg] Server control service on [/server_control].
+[gz-1] [Msg] Found no publishers on /stats, adding root stats topic
+[gz-1] [Msg] Found no publishers on /clock, adding root clock topic
+[gz-1] [Msg] Contact system publishing on /vrx/hull_contacts
+[gz-1] [Msg] TrashWorld ready with 12 physical trash models
+[gz-1] [Msg] Loading plugin [gz-rendering-ogre2]
+[gz-1] [Msg] Serving scene information on [/world/trash_canal/scene/info]
+[gz-1] [Msg] Serving graph information on [/world/trash_canal/scene/graph]
+[gz-1] [Msg] Serving full state on [/world/trash_canal/state]
+[gz-1] [Msg] Serving full state (async) on [/world/trash_canal/state_async]
+[gz-1] libEGL warning: pci id for fd 55: 10de:28e0, driver (null)
+[gz-1] 
+[gz-1] pci id for fd 57: 10de:28e0, driver (null)
+[gz-1] pci id for fd 58: 10de:28e0, driver (null)
+[gz-1] libEGL warning: egl: failed to create dri2 screen
+[gz-1] libEGL warning: pci id for fd 55: 10de:28e0, driver (null)
+[gz-1] 
+[gz-1] pci id for fd 57: 10de:28e0, driver (null)
+[gz-1] pci id for fd 58: 10de:28e0, driver (null)
+[gz-1] libEGL warning: egl: failed to create dri2 screen
+[gz-1] libEGL warning: pci id for fd 55: 10de:28e0, driver (null)
+[gz-1] 
+[gz-1] [Wrn] [Ogre2Camera.cc:423] Ogre2Camera::SetVisibilityMask: Mask bits c0000000 are set but will be ignored as they conflict with the reserved bits used internally by the ogre2 backend.
+[parameter_bridge-2] [INFO] [1793296091.675362706] [vrx_bridge]: Passing message from ROS std_msgs/msg/Empty to Gazebo gz.msgs.Empty (showing msg only once per type)
+[parameter_bridge-2] [INFO] [1793296093.794799390] [vrx_bridge]: Passing message from ROS std_msgs/msg/Float64 to Gazebo gz.msgs.Double (showing msg only once per type)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [parameter_bridge-2]: sending signal 'SIGINT' to process[parameter_bridge-2]
+[INFO] [gz-1]: sending signal 'SIGINT' to process[gz-1]
+[parameter_bridge-2] [INFO] [1793296098.818446953] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-2] [INFO] [1793296098.819653922] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [parameter_bridge-2]: process has finished cleanly [pid 125038]
+[gz-1] [Msg] Publishing scene information on [/world/trash_canal/scene/info]
+[gz-1] [Msg] Publishing entity deletions on [/world/trash_canal/scene/deletion]
+[gz-1] [Msg] Publishing state changes on [/world/trash_canal/state]
+[gz-1] [Msg] Publishing pose messages on [/world/trash_canal/pose/info]
+[gz-1] [Msg] Publishing dynamic pose messages on [/world/trash_canal/dynamic_pose/info]
+[gz-1] [Msg] Scoop collected item; total=1
+[INFO] [gz-1]: process has finished cleanly [pid 125037]
